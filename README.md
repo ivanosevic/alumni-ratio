@@ -21,4 +21,22 @@ Some students who take the course CNT-301 and CNT-303 need more help when doing 
 - Generate a link with the information of the problem, with the purpose of sharing the problem with other students.
 
 
+## Transactions supported by the application 
+The application will allow the user to enter information for the following transactions: 
+* Investment by the business owner
+* Purchase of office supplies
+* Purchase of office equipment
+* Purchase of land
+* Payment for the purchase of office supplies
+* Payment of purchase of office equipment
+* Payment of land purchase
+* Bank loan
+* Bank loan payment
+* Service revenues
+* Expenditure of public services
+* Rental expense
+* Wages expenses
 
+- For purchases operations, you can specify if you bought it with debit or credit, or a mix of both. 
+- For payments, you need to specify the transaction of the purchase and the given amount of money. 
+- For expenses, owner investments and bank loans transactions, you only need to put the amount of money corresponding to the operation. 
