@@ -6,12 +6,9 @@ import java.util.List;
 //Este es el diario general en el que se registran las primeras transacciones
 public class GeneralJournal
 {
+    private final List<Transaction> list;
     private Transaction transaction;
-    private List<Transaction> list;
-    {
-        GeneralJournalEntry generalJournalEntry;
-        generalJournalEntry = new GeneralJournalEntry(transaction);
-    }
+    private List<Transaction> GeneralJournalEntry;
 
     public GeneralJournal(Transaction transaction, List<Transaction> list)
     {

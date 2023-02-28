@@ -1,12 +1,14 @@
 package edu.pucmm.eict;
 
+import java.util.List;
+
 public class Exercise
 {
     private String companyOwner;
     private String companyName;
     private Integer monthOperations;
     private Integer yearOperations;
-    private Transaction transactions[];
+    private List transactions;
 
     public Exercise(String companyOwner, String companyName, Integer monthOperations, Integer yearOperations, Transaction[] transactions)
     {
@@ -14,7 +16,7 @@ public class Exercise
         this.companyName = companyName;
         this.monthOperations = monthOperations;
         this.yearOperations = yearOperations;
-        this.transactions = transactions;
+        this.transactions = List.of(transactions);
     }
 
     public String getCompanyOwner()
@@ -37,7 +39,7 @@ public class Exercise
         return yearOperations;
     }
 
-    public Transaction[] getTransactions()
+    public List getTransactions()
     {
         return transactions;
     }
