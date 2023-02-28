@@ -3,7 +3,7 @@ package edu.pucmm.eict;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class GeneralJourneyRoy
+public class GeneralJournalRow
 {
     private Integer id;
     private LocalDate date;
@@ -11,7 +11,7 @@ public class GeneralJourneyRoy
     private BigDecimal debit;
     private BigDecimal credit;
 
-    public GeneralJourneyRoy(Integer id, LocalDate date, String detail, BigDecimal debit, BigDecimal credit)
+    public GeneralJournalRow(Integer id, LocalDate date, String detail, BigDecimal debit, BigDecimal credit)
     {
         this.id = id;
         this.date = date;

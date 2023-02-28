@@ -2,19 +2,19 @@ package edu.pucmm.eict;
 
 import java.time.LocalDate;
 
-public class GeneralJourneyEntry
+public class GeneralJournalEntry
 {
     private Integer id;
     private LocalDate date;
     private String explanation;
-    private GeneralJourney GeneralJourneyRow;
+    private GeneralJournal GeneralJournalRow;
 
-    public GeneralJourneyEntry(Integer id, LocalDate date, String explanation, GeneralJourney generalJourneyRow)
+    public GeneralJournalEntry(Integer id, LocalDate date, String explanation, GeneralJournal generalJourneyRow)
     {
         this.id = id;
         this.date = date;
         this.explanation = explanation;
-        GeneralJourneyRow = generalJourneyRow;
+        GeneralJournalRow = generalJourneyRow;
     }
 
     public Integer getId()
@@ -32,8 +32,8 @@ public class GeneralJourneyEntry
         return explanation;
     }
 
-    public GeneralJourney getGeneralJourneyRow()
+    public GeneralJournal getGeneralJournalRow()
     {
-        return GeneralJourneyRow;
+        return GeneralJournalRow;
     }
 }

@@ -3,12 +3,12 @@ package edu.pucmm.eict;
 public class SolvedExercise
 {
     private Exercise exercise;
-    private GeneralJourney generalJourney;
+    private GeneralJournal generalJournal;
 
-    public SolvedExercise(Exercise exercise, GeneralJourney generalJourney)
+    public SolvedExercise(Exercise exercise, GeneralJournal generalJournal)
     {
         this.exercise = exercise;
-        this.generalJourney = generalJourney;
+        this.generalJournal = generalJournal;
     }
 
     public Exercise getExercise()
@@ -16,8 +16,8 @@ public class SolvedExercise
         return exercise;
     }
 
-    public GeneralJourney getGeneralJourney()
+    public GeneralJournal getGeneralJournal()
     {
-        return generalJourney;
+        return generalJournal;
     }
 }
