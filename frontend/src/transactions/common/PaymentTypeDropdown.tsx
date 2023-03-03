@@ -1,4 +1,4 @@
-import {PaymentType, Transaction, TransactionType, TransactionTypeSelection} from "../models/transaction.model";
+import {PaymentType, Transaction, TransactionType} from "../models/transaction.model";
 import React, {useState} from "react";
 import {Dropdown, DropdownChangeEvent} from "primereact/dropdown";
 
