@@ -15,6 +15,9 @@ public class Transaction
     private Integer transactionType;
     private Integer transactionReference;
 
+    public Transaction() {
+    }
+
     public Transaction(Integer id, Integer paymentType, Integer day, BigDecimal amount, BigDecimal credit, BigDecimal debit, Integer transactionType, Integer transactionReference)
     {
         this.id = id;
@@ -65,5 +68,19 @@ public class Transaction
     public Integer getTransactionReference()
     {
         return transactionReference;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", paymentType=" + paymentType +
+                ", day=" + day +
+                ", amount=" + amount +
+                ", credit=" + credit +
+                ", debit=" + debit +
+                ", transactionType=" + transactionType +
+                ", transactionReference=" + transactionReference +
+                '}';
     }
 }

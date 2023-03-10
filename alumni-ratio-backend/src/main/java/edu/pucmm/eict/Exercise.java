@@ -1,5 +1,6 @@
 package edu.pucmm.eict;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Exercise
@@ -8,15 +9,18 @@ public class Exercise
     private String companyName;
     private Integer monthOperations;
     private Integer yearOperations;
-    private List transactions;
+    private List<Transaction> transactions;
 
-    public Exercise(String companyOwner, String companyName, Integer monthOperations, Integer yearOperations, Transaction[] transactions)
+    public Exercise() {
+    }
+
+    public Exercise(String companyOwner, String companyName, Integer monthOperations, Integer yearOperations)
     {
         this.companyOwner = companyOwner;
         this.companyName = companyName;
         this.monthOperations = monthOperations;
         this.yearOperations = yearOperations;
-        this.transactions = List.of(transactions);
+        this.transactions = new ArrayList<>();
     }
 
     public String getCompanyOwner()
@@ -39,8 +43,19 @@ public class Exercise
         return yearOperations;
     }
 
-    public List getTransactions()
+    public List<Transaction> getTransactions()
     {
         return transactions;
+    }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "companyOwner='" + companyOwner + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", monthOperations=" + monthOperations +
+                ", yearOperations=" + yearOperations +
+                ", transactions=" + transactions +
+                '}';
     }
 }

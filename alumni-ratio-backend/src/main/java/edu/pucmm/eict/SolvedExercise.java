@@ -5,6 +5,10 @@ public class SolvedExercise
     private Exercise exercise;
     private GeneralJournal generalJournal;
 
+    public SolvedExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
     public SolvedExercise(Exercise exercise, GeneralJournal generalJournal)
     {
         this.exercise = exercise;
