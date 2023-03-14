@@ -12,7 +12,11 @@ export class GeneralJournalModel {
   description?: string;
 }
 
-function GeneralJournal() {
+interface GeneralJournalProps{
+generalJournalData: GeneralJournalModel[];
+}
+
+function GeneralJournal(props : GeneralJournalProps) {
   const [description, setDescription] = useState('');
 
   const data: GeneralJournalModel[] = [
@@ -45,7 +49,7 @@ function GeneralJournal() {
 
     <div className="p-d-flex p-flex-row">
       <div className="p-d-flex p-flex-column" style={{ marginBottom: '20px', marginRight: '20px' }}>
-        <DataTable value={data} className="p-datatable-sm">
+        <DataTable value={props.generalJournalData} className="p-datatable-sm">
           <Column field="date" header="Date" />
           <Column field="account" header="Account" />
           <Column field="reference" header="Reference" />
