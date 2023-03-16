@@ -1,4 +1,4 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.exercises;
 
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;

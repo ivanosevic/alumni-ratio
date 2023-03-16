@@ -1,7 +1,7 @@
 package edu.pucmm.eict;
 
+import edu.pucmm.eict.exercises.ExerciseController;
 import io.javalin.Javalin;
-import io.javalin.openapi.plugin.OpenApiConfiguration;
 import io.javalin.openapi.plugin.OpenApiPlugin;
 import io.javalin.openapi.plugin.OpenApiPluginConfiguration;
 import io.javalin.openapi.plugin.swagger.SwaggerConfiguration;

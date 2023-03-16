@@ -1,4 +1,4 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.exercises;
 
 public class ExerciseSolver
 {

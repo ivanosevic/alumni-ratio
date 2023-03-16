@@ -1,4 +1,4 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.journals.general;
 
 import java.time.LocalDate;
 

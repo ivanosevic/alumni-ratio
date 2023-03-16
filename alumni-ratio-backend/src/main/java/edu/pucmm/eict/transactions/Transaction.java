@@ -1,11 +1,9 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.transactions;
 
 import java.math.BigDecimal;
 
-//Esta es la primera clase creada para nuestro proyecto
 public class Transaction
 {
-    //A continuacion los atributos de la clase
     private Integer id;
     private Integer paymentType;
     private Integer day;

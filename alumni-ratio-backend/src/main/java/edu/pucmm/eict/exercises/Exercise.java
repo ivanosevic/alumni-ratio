@@ -1,4 +1,6 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.exercises;
+
+import edu.pucmm.eict.transactions.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;

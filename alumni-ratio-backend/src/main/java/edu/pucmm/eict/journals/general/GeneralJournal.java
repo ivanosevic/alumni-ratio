@@ -1,6 +1,7 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.journals.general;
 
-import javax.swing.*;
+import edu.pucmm.eict.transactions.Transaction;
+
 import java.util.List;
 
 //Este es el diario general en el que se registran las primeras transacciones

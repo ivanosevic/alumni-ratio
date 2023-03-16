@@ -1,4 +1,6 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.exercises;
+
+import edu.pucmm.eict.journals.general.GeneralJournal;
 
 public class SolvedExercise
 {
