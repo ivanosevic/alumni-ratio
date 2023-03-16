@@ -7,6 +7,7 @@ import java.util.Objects;
 public class GeneralJournalRow {
     private Integer id;
     private LocalDate date;
+    private Integer reference;
     private String detail;
     private BigDecimal debit;
     private BigDecimal credit;
@@ -14,9 +15,10 @@ public class GeneralJournalRow {
     public GeneralJournalRow() {
     }
 
-    public GeneralJournalRow(Integer id, LocalDate date, String detail, BigDecimal debit, BigDecimal credit) {
+    public GeneralJournalRow(Integer id, LocalDate date, Integer reference, String detail, BigDecimal debit, BigDecimal credit) {
         this.id = id;
         this.date = date;
+        this.reference = reference;
         this.detail = detail;
         this.debit = debit;
         this.credit = credit;
@@ -26,20 +28,48 @@ public class GeneralJournalRow {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public LocalDate getDate() {
         return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Integer getReference() {
+        return reference;
+    }
+
+    public void setReference(Integer reference) {
+        this.reference = reference;
     }
 
     public String getDetail() {
         return detail;
     }
 
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
     public BigDecimal getDebit() {
         return debit;
     }
 
+    public void setDebit(BigDecimal debit) {
+        this.debit = debit;
+    }
+
     public BigDecimal getCredit() {
         return credit;
+    }
+
+    public void setCredit(BigDecimal credit) {
+        this.credit = credit;
     }
 
     @Override
