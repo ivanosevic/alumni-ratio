@@ -4,6 +4,7 @@ import edu.pucmm.eict.transactions.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Exercise {
     private String companyOwner;
@@ -41,6 +42,19 @@ public class Exercise {
 
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exercise exercise = (Exercise) o;
+        return Objects.equals(companyOwner, exercise.companyOwner) && Objects.equals(companyName, exercise.companyName) && Objects.equals(monthOperations, exercise.monthOperations) && Objects.equals(yearOperations, exercise.yearOperations) && Objects.equals(transactions, exercise.transactions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(companyOwner, companyName, monthOperations, yearOperations, transactions);
     }
 
     @Override

@@ -2,23 +2,42 @@ package edu.pucmm.eict.journals.general;
 
 import edu.pucmm.eict.transactions.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GeneralJournal {
-    private final List<Transaction> list;
-    private Transaction transaction;
-    private List<Transaction> GeneralJournalEntry;
+    private final List<GeneralJournalEntry> generalJournalEntries;
 
-    public GeneralJournal(Transaction transaction, List<Transaction> list) {
-        this.transaction = transaction;
-        this.list = list;
+    public GeneralJournal() {
+        this.generalJournalEntries = new ArrayList<>();
     }
 
-    public Transaction getTransaction() {
-        return transaction;
+    public void addTransactionAsEntry(Transaction transaction) {
+
     }
 
-    public List<Transaction> getList() {
-        return list;
+    public List<GeneralJournalEntry> getGeneralJournalEntries() {
+        return generalJournalEntries;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GeneralJournal that = (GeneralJournal) o;
+        return Objects.equals(generalJournalEntries, that.generalJournalEntries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(generalJournalEntries);
+    }
+
+    @Override
+    public String toString() {
+        return "GeneralJournal{" +
+                "generalJournalEntries=" + generalJournalEntries +
+                '}';
     }
 }
