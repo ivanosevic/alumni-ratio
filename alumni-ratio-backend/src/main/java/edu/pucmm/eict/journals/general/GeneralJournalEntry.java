@@ -2,38 +2,32 @@ package edu.pucmm.eict.journals.general;
 
 import java.time.LocalDate;
 
-public class GeneralJournalEntry
-{
+public class GeneralJournalEntry {
     private Integer id;
     private LocalDate date;
     private String explanation;
     private GeneralJournal GeneralJournalRow;
 
-    public GeneralJournalEntry(Integer id, LocalDate date, String explanation, GeneralJournal generalJourneyRow)
-    {
+    public GeneralJournalEntry(Integer id, LocalDate date, String explanation, GeneralJournal generalJourneyRow) {
         this.id = id;
         this.date = date;
         this.explanation = explanation;
         GeneralJournalRow = generalJourneyRow;
     }
 
-    public Integer getId()
-    {
+    public Integer getId() {
         return id;
     }
 
-    public LocalDate getDate()
-    {
+    public LocalDate getDate() {
         return date;
     }
 
-    public String getExplanation()
-    {
+    public String getExplanation() {
         return explanation;
     }
 
-    public GeneralJournal getGeneralJournalRow()
-    {
+    public GeneralJournal getGeneralJournalRow() {
         return GeneralJournalRow;
     }
 }
