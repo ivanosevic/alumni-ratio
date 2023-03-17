@@ -15,8 +15,6 @@
         <itext.version>7.2.5</itext.version>
     </properties>
     <dependencies>
-
-        <!-- Core iText 7 Libraries -->
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itext7-core</artifactId>
@@ -38,22 +36,28 @@
             <artifactId>layout</artifactId>
             <version>${itext.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.javalin</groupId>
             <artifactId>javalin-bundle</artifactId>
-            <version>5.4.2</version>
+            <version>5.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.6</version>
         </dependency>
         <dependency>
             <groupId>io.javalin.community.openapi</groupId>
             <artifactId>javalin-openapi-plugin</artifactId>
             <version>5.4.2</version>
         </dependency>
-        <!--suppress VulnerableLibrariesLocal -->
         <dependency>
-            <!--suppress VulnerableLibrariesLocal -->
             <groupId>io.javalin.community.openapi</groupId>
-            <!--suppress VulnerableLibrariesLocal -->
             <artifactId>javalin-swagger-plugin</artifactId>
             <version>5.4.2</version>
         </dependency>

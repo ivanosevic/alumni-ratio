@@ -30,6 +30,7 @@ public class AlumniRatioApplication {
         });
         var exerciseController = new ExerciseController();
         app.post("/solve-exercise", exerciseController::solveExercise);
+        app.post("/solve-exercise/pdf", exerciseController::getExercisePdf);
         app.start(7000);
     }
 }
