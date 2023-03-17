@@ -25,6 +25,7 @@
             <version>5.4.2</version>
         </dependency>
         <dependency>
+            <!--suppress VulnerableLibrariesLocal -->
             <groupId>io.javalin.community.openapi</groupId>
             <artifactId>javalin-swagger-plugin</artifactId>
             <version>5.4.2</version>

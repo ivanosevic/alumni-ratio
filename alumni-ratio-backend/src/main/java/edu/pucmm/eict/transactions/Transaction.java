@@ -1,11 +1,8 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.transactions;
 
 import java.math.BigDecimal;
 
-//Esta es la primera clase creada para nuestro proyecto
-public class Transaction
-{
-    //A continuacion los atributos de la clase
+public class Transaction {
     private Integer id;
     private Integer paymentType;
     private Integer day;
@@ -18,8 +15,7 @@ public class Transaction
     public Transaction() {
     }
 
-    public Transaction(Integer id, Integer paymentType, Integer day, BigDecimal amount, BigDecimal credit, BigDecimal debit, Integer transactionType, Integer transactionReference)
-    {
+    public Transaction(Integer id, Integer paymentType, Integer day, BigDecimal amount, BigDecimal credit, BigDecimal debit, Integer transactionType, Integer transactionReference) {
         this.id = id;
         this.paymentType = paymentType;
         this.day = day;
@@ -30,43 +26,35 @@ public class Transaction
         this.transactionReference = transactionReference;
     }
 
-    public Integer getId()
-    {
+    public Integer getId() {
         return id;
     }
 
-    public Integer getPaymentType()
-    {
+    public Integer getPaymentType() {
         return paymentType;
     }
 
-    public Integer getDay()
-    {
+    public Integer getDay() {
         return day;
     }
 
-    public BigDecimal getAmount()
-    {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public BigDecimal getCredit()
-    {
+    public BigDecimal getCredit() {
         return credit;
     }
 
-    public BigDecimal getDebit()
-    {
+    public BigDecimal getDebit() {
         return debit;
     }
 
-    public Integer getTransactionType()
-    {
+    public Integer getTransactionType() {
         return transactionType;
     }
 
-    public Integer getTransactionReference()
-    {
+    public Integer getTransactionReference() {
         return transactionReference;
     }
 

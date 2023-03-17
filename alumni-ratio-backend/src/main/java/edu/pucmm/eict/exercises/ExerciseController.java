@@ -1,4 +1,4 @@
-package edu.pucmm.eict;
+package edu.pucmm.eict.exercises;
 
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
@@ -28,7 +28,6 @@ public class ExerciseController {
     )
     public void solveExercise(Context ctx) {
         Exercise exercise = ctx.bodyAsClass(Exercise.class);
-        logger.info("{}", exercise);
         var exerciseSolver = new ExerciseSolver(exercise);
         var solvedExercise = exerciseSolver.solve();
         ctx.json(solvedExercise);

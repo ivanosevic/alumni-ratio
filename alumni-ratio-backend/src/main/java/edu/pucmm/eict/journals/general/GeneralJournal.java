@@ -1,0 +1,94 @@
+package edu.pucmm.eict.journals.general;
+
+import edu.pucmm.eict.journals.general.analyzer.*;
+import edu.pucmm.eict.transactions.Transaction;
+import edu.pucmm.eict.transactions.TransactionType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public class GeneralJournal {
+    private final List<GeneralJournalEntry> generalJournalEntries;
+
+    public GeneralJournal() {
+        this.generalJournalEntries = new ArrayList<>();
+    }
+
+    public void addTransactionAsEntry(Transaction transaction) {
+        var analyzerContext = new GeneralJournalAnalyzerContext();
+        if (transaction.getTransactionType().equals(TransactionType.OWNER_INVESTMENT)) {
+            analyzerContext.setAnalyzer(new OwnerInvestmentEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.OFFICE_SUPPLIES_PURCHASE)) {
+            analyzerContext.setAnalyzer(new OfficeSuppliesEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.OFFICE_EQUIPMENT_PURCHASE)) {
+            analyzerContext.setAnalyzer(new OfficeEquipmentEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.LAND_PURCHASE)) {
+            analyzerContext.setAnalyzer(new LandPurchaseEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.OFFICE_SUPPLIES_PAYMENT)) {
+            analyzerContext.setAnalyzer(new OfficeSuppliesPaymentEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.OFFICE_EQUIPMENT_PAYMENT)) {
+            analyzerContext.setAnalyzer(new OfficeEquipmentPaymentEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.BANK_LOAN)) {
+            analyzerContext.setAnalyzer(new BankLoanEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.BANK_LOAN_PAYMENT)) {
+            analyzerContext.setAnalyzer(new BankLoanPaymentEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.SERVICE_REVENUES)) {
+            analyzerContext.setAnalyzer(new ServiceRevenuesEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.PUBLIC_SERVICES_EXPENSES)) {
+            analyzerContext.setAnalyzer(new PublicServicesExpensesEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.RENT_EXPENSES)) {
+            analyzerContext.setAnalyzer(new RentExpensesEntryAnalyzer());
+        }
+
+        if(transaction.getTransactionType().equals(TransactionType.WAGES_EXPENSES)) {
+            analyzerContext.setAnalyzer(new WagesExpensesEntryAnalyzer());
+        }
+        var entry = analyzerContext.analyze(transaction);
+        generalJournalEntries.add(entry);
+    }
+
+    public List<GeneralJournalEntry> getGeneralJournalEntries() {
+        return generalJournalEntries;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GeneralJournal that = (GeneralJournal) o;
+        return Objects.equals(generalJournalEntries, that.generalJournalEntries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(generalJournalEntries);
+    }
+
+    @Override
+    public String toString() {
+        return "GeneralJournal{" +
+                "generalJournalEntries=" + generalJournalEntries +
+                '}';
+    }
+}
