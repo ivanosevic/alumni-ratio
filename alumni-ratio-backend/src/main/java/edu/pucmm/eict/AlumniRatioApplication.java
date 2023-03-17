@@ -19,9 +19,8 @@ public class AlumniRatioApplication {
                                         openApiInfo.setVersion("1.0.0");
                                     })
                                     .withServer((openApiServer) -> {
-                                        openApiServer.setUrl(("http://localhost:{port}/" + version + "/"));
+                                        openApiServer.setUrl(("http://localhost:7000/"));
                                         openApiServer.setDescription("Server description goes here");
-                                        openApiServer.addVariable("port", "7000", new String[]{"7070", "8080"}, "Port of the server");
                                     })
                             )
             ));
@@ -31,6 +30,7 @@ public class AlumniRatioApplication {
         });
         var exerciseController = new ExerciseController();
         app.post("/solve-exercise", exerciseController::solveExercise);
+        app.post("/solve-exercise/pdf", exerciseController::getExercisePdf);
         app.start(7000);
     }
 }
