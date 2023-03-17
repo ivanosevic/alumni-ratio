@@ -5,7 +5,7 @@ import edu.pucmm.eict.journals.general.GeneralJournal;
 import java.util.Objects;
 
 public class SolvedExercise {
-    private Exercise exercise;
+    private final Exercise exercise;
     private GeneralJournal generalJournal;
 
     public SolvedExercise(Exercise exercise) {

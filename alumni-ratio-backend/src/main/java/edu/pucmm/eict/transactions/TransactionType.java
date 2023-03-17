@@ -4,7 +4,7 @@ public class TransactionType {
 
     public static Integer NONE = 0;
     public static Integer OWNER_INVESTMENT = 1;
-    public static Integer OFFICE_SUPPLIERS_PURCHASE = 2;
+    public static Integer OFFICE_SUPPLIES_PURCHASE = 2;
     public static Integer OFFICE_EQUIPMENT_PURCHASE = 3;
     public static Integer LAND_PURCHASE = 4;
     public static Integer OFFICE_SUPPLIES_PAYMENT = 5;
