@@ -12,8 +12,33 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <itext.version>7.2.5</itext.version>
     </properties>
     <dependencies>
+
+        <!-- Core iText 7 Libraries -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>${itext.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>${itext.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>io</artifactId>
+            <version>${itext.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
+            <version>${itext.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>io.javalin</groupId>
             <artifactId>javalin-bundle</artifactId>
@@ -24,9 +49,11 @@
             <artifactId>javalin-openapi-plugin</artifactId>
             <version>5.4.2</version>
         </dependency>
+        <!--suppress VulnerableLibrariesLocal -->
         <dependency>
             <!--suppress VulnerableLibrariesLocal -->
             <groupId>io.javalin.community.openapi</groupId>
+            <!--suppress VulnerableLibrariesLocal -->
             <artifactId>javalin-swagger-plugin</artifactId>
             <version>5.4.2</version>
         </dependency>
