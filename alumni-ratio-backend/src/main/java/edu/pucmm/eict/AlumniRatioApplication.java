@@ -1,6 +1,7 @@
 package edu.pucmm.eict;
 
 import edu.pucmm.eict.exercises.ExerciseController;
+import edu.pucmm.eict.reports.exceptions.PDFGenerationErrorException;
 import io.javalin.Javalin;
 import io.javalin.openapi.plugin.OpenApiPlugin;
 import io.javalin.openapi.plugin.OpenApiPluginConfiguration;
@@ -31,6 +32,7 @@ public class AlumniRatioApplication {
         var exerciseController = new ExerciseController();
         app.post("/solve-exercise", exerciseController::solveExercise);
         app.post("/solve-exercise/pdf", exerciseController::getExercisePdf);
+        app.exception(PDFGenerationErrorException.class, exerciseController::handlePdfGenerationErrorException);
         app.start(7000);
     }
 }
