@@ -1,5 +1,6 @@
 package edu.pucmm.eict.journals.general;
 
+import edu.pucmm.eict.exercises.Exercise;
 import edu.pucmm.eict.journals.general.analyzer.*;
 import edu.pucmm.eict.transactions.Transaction;
 import edu.pucmm.eict.transactions.TransactionType;
@@ -9,9 +10,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class GeneralJournal {
+
+    private final Exercise exercise;
     private final List<GeneralJournalEntry> generalJournalEntries;
 
-    public GeneralJournal() {
+    public GeneralJournal(Exercise exercise) {
+        this.exercise = exercise;
         this.generalJournalEntries = new ArrayList<>();
     }
 
@@ -22,11 +26,11 @@ public class GeneralJournal {
         }
 
         if(transaction.getTransactionType().equals(TransactionType.OFFICE_SUPPLIES_PURCHASE)) {
-            analyzerContext.setAnalyzer(new OfficeSuppliesEntryAnalyzer());
+            analyzerContext.setAnalyzer(new OfficeSuppliesPurchaseEntryAnalyzer());
         }
 
         if(transaction.getTransactionType().equals(TransactionType.OFFICE_EQUIPMENT_PURCHASE)) {
-            analyzerContext.setAnalyzer(new OfficeEquipmentEntryAnalyzer());
+            analyzerContext.setAnalyzer(new OfficeEquipmentPurchaseEntryAnalyzer());
         }
 
         if(transaction.getTransactionType().equals(TransactionType.LAND_PURCHASE)) {
@@ -64,7 +68,7 @@ public class GeneralJournal {
         if(transaction.getTransactionType().equals(TransactionType.WAGES_EXPENSES)) {
             analyzerContext.setAnalyzer(new WagesExpensesEntryAnalyzer());
         }
-        var entry = analyzerContext.analyze(transaction);
+        var entry = analyzerContext.analyze(transaction, exercise);
         generalJournalEntries.add(entry);
     }
 

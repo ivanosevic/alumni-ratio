@@ -1,17 +1,16 @@
-package edu.pucmm.eict.reports;
+package edu.pucmm.eict.reports.sections;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.layout.Document;
 import edu.pucmm.eict.exercises.SolvedExercise;
 
-public class GeneralLedgerSection extends SolvedExercisePdfSection {
+public class GeneralLedgerSection extends SolvedExercisePDFSection {
 
     public GeneralLedgerSection(PdfDocument pdfDocument, SolvedExercise solvedExercise) {
         super(pdfDocument, solvedExercise);
     }
 
     @Override
-    public void addSection() {
+    public void sectionBody() {
         return;
     }
 }

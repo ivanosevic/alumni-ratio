@@ -1,16 +1,16 @@
-package edu.pucmm.eict.reports;
+package edu.pucmm.eict.reports.models;
 
 import java.time.LocalDateTime;
 
-public class Report {
+public class SolvedExerciseReport {
 
     private byte[] content;
     private LocalDateTime createdAt;
 
-    public Report() {
+    public SolvedExerciseReport() {
     }
 
-    public Report(byte[] content, LocalDateTime createdAt) {
+    public SolvedExerciseReport(byte[] content, LocalDateTime createdAt) {
         this.content = content;
         this.createdAt = createdAt;
     }
