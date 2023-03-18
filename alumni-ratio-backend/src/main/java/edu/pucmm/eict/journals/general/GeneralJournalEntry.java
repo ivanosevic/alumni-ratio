@@ -6,24 +6,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class GeneralJournalEntry {
-    private Integer id;
     private LocalDate date;
     private String explanation;
     private final List<GeneralJournalRow> generalJournalRows;
 
-    public GeneralJournalEntry(Integer id, LocalDate date, String explanation) {
-        this.id = id;
+    public GeneralJournalEntry(LocalDate date, String explanation) {
         this.date = date;
         this.explanation = explanation;
         this.generalJournalRows = new ArrayList<>();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void addRow(GeneralJournalRow row) {
+        this.generalJournalRows.add(row);
     }
 
     public LocalDate getDate() {
@@ -51,19 +45,18 @@ public class GeneralJournalEntry {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GeneralJournalEntry that = (GeneralJournalEntry) o;
-        return Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(explanation, that.explanation) && Objects.equals(generalJournalRows, that.generalJournalRows);
+        return Objects.equals(date, that.date) && Objects.equals(explanation, that.explanation) && Objects.equals(generalJournalRows, that.generalJournalRows);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, explanation, generalJournalRows);
+        return Objects.hash(date, explanation, generalJournalRows);
     }
 
     @Override
     public String toString() {
         return "GeneralJournalEntry{" +
-                "id=" + id +
-                ", date=" + date +
+                "date=" + date +
                 ", explanation='" + explanation + '\'' +
                 ", generalJournalRows=" + generalJournalRows +
                 '}';

@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class GeneralJournalRow {
-    private Integer id;
     private LocalDate date;
     private Integer reference;
     private String detail;
@@ -15,21 +14,12 @@ public class GeneralJournalRow {
     public GeneralJournalRow() {
     }
 
-    public GeneralJournalRow(Integer id, LocalDate date, Integer reference, String detail, BigDecimal debit, BigDecimal credit) {
-        this.id = id;
+    public GeneralJournalRow(LocalDate date, Integer reference, String detail, BigDecimal debit, BigDecimal credit) {
         this.date = date;
         this.reference = reference;
         this.detail = detail;
         this.debit = debit;
         this.credit = credit;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public LocalDate getDate() {
@@ -77,19 +67,18 @@ public class GeneralJournalRow {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GeneralJournalRow that = (GeneralJournalRow) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(date, that.date) && Objects.equals(reference, that.reference) && Objects.equals(detail, that.detail) && Objects.equals(debit, that.debit) && Objects.equals(credit, that.credit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(date, reference, detail, debit, credit);
     }
 
     @Override
     public String toString() {
         return "GeneralJournalRow{" +
-                "id=" + id +
-                ", date=" + date +
+                "date=" + date +
                 ", detail='" + detail + '\'' +
                 ", debit=" + debit +
                 ", credit=" + credit +
