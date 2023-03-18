@@ -1,10 +1,14 @@
 package edu.pucmm.eict.journals.general;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class GeneralJournalRow {
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
     private Integer reference;
     private String detail;
