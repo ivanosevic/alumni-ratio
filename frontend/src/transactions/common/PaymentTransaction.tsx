@@ -39,8 +39,8 @@ function MixedPaymentTransaction(props: MixedPaymentProps) {
 
 
 interface PaymentTransactionProps {
-    transaction: Transaction | undefined;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction | undefined>>;
+    transaction: Transaction;
+    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
 }
 
 export default function PaymentTransaction(props: PaymentTransactionProps) {

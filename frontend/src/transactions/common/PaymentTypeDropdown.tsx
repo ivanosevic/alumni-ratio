@@ -5,8 +5,8 @@ import {Dropdown, DropdownChangeEvent} from "primereact/dropdown";
 
 interface PaymentTypeProps {
     label?: string;
-    transaction: Transaction | undefined;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction | undefined>>;
+    transaction: Transaction;
+    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
 }
 
 class PaymentTypeSelection {
