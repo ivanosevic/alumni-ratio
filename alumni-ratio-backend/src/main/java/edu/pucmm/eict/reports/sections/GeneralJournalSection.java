@@ -7,7 +7,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.canvas.draw.SolidLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
-import com.itextpdf.layout.properties.HorizontalAlignment;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import edu.pucmm.eict.exercises.ExerciseController;
@@ -16,6 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class GeneralJournalSection extends SolvedExercisePDFSection {
 
@@ -104,19 +106,22 @@ public class GeneralJournalSection extends SolvedExercisePDFSection {
         generalJournalTable.addHeaderCell(debitHeaderCell);
         generalJournalTable.addHeaderCell(creditHeaderCell);
 
+        var moneyFormatter = new DecimalFormat("#,##0.00");
+        moneyFormatter.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+
         for(var generalJournalEntry : solvedExercise.getGeneralJournal().getGeneralJournalEntries()) {
             for(var generalJournalRow : generalJournalEntry.getGeneralJournalRows()) {
                 var dateDataCell = new Cell()
                         .add(new Paragraph(generalJournalRow.getDate().toString()).setTextAlignment(TextAlignment.CENTER))
                         .setFont(helveticaFont)
                         .setFontColor(ColorConstants.BLACK)
-                        .setFontSize(12f);
+                        .setFontSize(10f);
 
                 var detailDataCell = new Cell()
                         .add(new Paragraph(generalJournalRow.getDetail()).setTextAlignment(TextAlignment.CENTER))
                         .setFont(helveticaFont)
                         .setFontColor(ColorConstants.BLACK)
-                        .setFontSize(12f);
+                        .setFontSize(10f);
 
                 var referenceDataCell = new Cell()
                         .add(new Paragraph(generalJournalRow.getReference().toString()).setTextAlignment(TextAlignment.CENTER))
@@ -125,13 +130,13 @@ public class GeneralJournalSection extends SolvedExercisePDFSection {
                         .setFontSize(12f);
 
                 var debitDataCell = new Cell()
-                        .add(new Paragraph(generalJournalRow.getDebit().toString()).setTextAlignment(TextAlignment.CENTER))
+                        .add(new Paragraph(moneyFormatter.format(generalJournalRow.getDebit())).setTextAlignment(TextAlignment.CENTER))
                         .setFont(helveticaFont)
                         .setFontColor(ColorConstants.BLACK)
                         .setFontSize(12f);
 
                 var creditDataCell = new Cell()
-                        .add(new Paragraph(generalJournalRow.getCredit().toString()).setTextAlignment(TextAlignment.CENTER))
+                        .add(new Paragraph(moneyFormatter.format(generalJournalRow.getCredit())).setTextAlignment(TextAlignment.CENTER))
                         .setFont(helveticaFont)
                         .setFontColor(ColorConstants.BLACK)
                         .setFontSize(12f);
