@@ -5,6 +5,7 @@ import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.canvas.draw.SolidLine;
+import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.UnitValue;
 import edu.pucmm.eict.exercises.SolvedExercise;
@@ -13,12 +14,13 @@ import java.io.IOException;
 
 public class GeneralInformationSection extends SolvedExercisePDFSection {
 
-    public GeneralInformationSection(PdfDocument PdfDocument, SolvedExercise solvedExercise) {
-        super(PdfDocument, solvedExercise);
+    public GeneralInformationSection(PdfDocument PdfDocument, SolvedExercise solvedExercise, Document document) {
+        super(PdfDocument, solvedExercise, document);
     }
 
     @Override
-    public void sectionBody() throws IOException {
+    public void sectionBody() throws IOException
+    {
         var helveticaFont = PdfFontFactory.createFont(StandardFonts.HELVETICA);
         var mainHeaderText = new Text("Informaciones generales sobre la empresa")
                 .setFontColor(ColorConstants.BLACK)

@@ -14,10 +14,10 @@ public abstract class SolvedExercisePDFSection {
     protected final SolvedExercise solvedExercise;
     protected final Document document;
 
-    public SolvedExercisePDFSection(PdfDocument pdfDocument, SolvedExercise solvedExercise) {
+    public SolvedExercisePDFSection(PdfDocument pdfDocument, SolvedExercise solvedExercise, Document document) {
         this.pdfDocument = pdfDocument;
         this.solvedExercise = solvedExercise;
-        this.document = new Document(pdfDocument);
+        this.document = document;
     }
 
     protected abstract void sectionBody() throws IOException;
