@@ -30,7 +30,6 @@ public abstract class SolvedExercisePDFSection {
         try {
             this.setPdfDefaultProperties();
             this.sectionBody();
-            this.document.close();
         } catch (IOException e) {
             throw new PDFGenerationErrorException("There was an error while generating the PDF Report.", e);
         }

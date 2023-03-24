@@ -13,7 +13,7 @@ public interface PaymentTypeEntryAnalyzer extends GeneralJournalEntryAnalyzer {
             return this.debit(transaction, exercise);
         }
 
-        if (transaction.getTransactionType().equals(PaymentType.CREDIT)) {
+        if (transaction.getPaymentType().equals(PaymentType.CREDIT)) {
             return this.credit(transaction, exercise);
         }
 

@@ -3,8 +3,8 @@ import React, {useEffect} from "react";
 import PaymentTransaction from "../common/PaymentTransaction";
 
 interface OfficeSuppliesPurchaseTransactionProps {
-    transaction: Transaction | undefined;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction | undefined>>;
+    transaction: Transaction;
+    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
 }
 
 

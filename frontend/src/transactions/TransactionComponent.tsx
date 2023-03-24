@@ -23,8 +23,8 @@ class TransactionTypeSelection {
 }
 
 interface TransactionComponentProps {
-    transaction: Transaction | undefined;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction | undefined>>;
+    transaction: Transaction;
+    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
 }
 
 export default function TransactionComponent(props: TransactionComponentProps) {
@@ -79,58 +79,56 @@ export default function TransactionComponent(props: TransactionComponentProps) {
     }
 
     return (
-        <Card title="Transacción 1">
-            <div className="formgrid grid">
-                <section className="col-12">
-                    <div className="field">
-                        <label>1. Selecciona la fecha de la transacción</label>
-                        <div className="col">
-                            <Calendar className="w-full md:w-5" value={props.transaction?.date}
-                                      onChange={handleTransactionDageChange} showIcon/>
-                        </div>
+        <div className="formgrid grid">
+            <section className="col-12">
+                <div className="field">
+                    <label>1. Selecciona la fecha de la transacción</label>
+                    <div className="col">
+                        <Calendar className="w-full md:w-5" value={props.transaction?.date}
+                                  onChange={handleTransactionDageChange} showIcon/>
                     </div>
-                </section>
-                <section className="col-12">
-                    <div className="field">
-                        <label>2. ¿Qué clase de operación se realizó en esta transacción?</label>
-                        <div className="col">
-                            <Dropdown value={transactionTypeSelection}
-                                      onChange={(e) => setTransactionTypeSelection(e.value)}
-                                      options={transactionTypeSelections} optionLabel="label" className="w-full md:w-5"
-                                      placeholder="Seleccione la operación realizada"/>
-                        </div>
+                </div>
+            </section>
+            <section className="col-12">
+                <div className="field">
+                    <label>2. ¿Qué clase de operación se realizó en esta transacción?</label>
+                    <div className="col">
+                        <Dropdown value={transactionTypeSelection}
+                                  onChange={(e) => setTransactionTypeSelection(e.value)}
+                                  options={transactionTypeSelections} optionLabel="label" className="w-full md:w-5"
+                                  placeholder="Seleccione la operación realizada"/>
                     </div>
-                </section>
-                <section className="col-12">
-                    {transactionTypeSelection?.type === TransactionType.OWNER_INVESTMENT ?
-                        <OwnerInvestmentTransaction transaction={props.transaction}
-                                                    setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.OFFICE_SUPPLIES_PURCHASE ?
-                        <OfficeSuppliesPurchaseTransaction transaction={props.transaction}
-                                                           setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.OFFICE_EQUIPMENT_PURCHASE ?
-                        <OfficeSuppliesPurchaseTransaction transaction={props.transaction}
-                                                           setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.LAND_PURCHASE ?
-                        <LandPurchaseTransaction transaction={props.transaction}
-                                                 setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.BANK_LOAN ?
-                        <BankLoanTransaction transaction={props.transaction}
+                </div>
+            </section>
+            <section className="col-12">
+                {transactionTypeSelection?.type === TransactionType.OWNER_INVESTMENT ?
+                    <OwnerInvestmentTransaction transaction={props.transaction}
+                                                setTransaction={props.setTransaction}/> : null}
+                {transactionTypeSelection?.type === TransactionType.OFFICE_SUPPLIES_PURCHASE ?
+                    <OfficeSuppliesPurchaseTransaction transaction={props.transaction}
+                                                       setTransaction={props.setTransaction}/> : null}
+                {transactionTypeSelection?.type === TransactionType.OFFICE_EQUIPMENT_PURCHASE ?
+                    <OfficeSuppliesPurchaseTransaction transaction={props.transaction}
+                                                       setTransaction={props.setTransaction}/> : null}
+                {transactionTypeSelection?.type === TransactionType.LAND_PURCHASE ?
+                    <LandPurchaseTransaction transaction={props.transaction}
                                              setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.SERVICE_REVENUES ?
-                        <ServiceRevenuesTransaction transaction={props.transaction}
-                                                    setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.PUBLIC_SERVICES_EXPENSES ?
-                        <PublicServicesExpensesTransaction transaction={props.transaction}
-                                                           setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.RENT_EXPENSES ?
-                        <RentExpensesTransaction transaction={props.transaction}
-                                                 setTransaction={props.setTransaction}/> : null}
-                    {transactionTypeSelection?.type === TransactionType.WAGES_EXPENSES ?
-                        <WagesExpensesTransaction transaction={props.transaction}
-                                                  setTransaction={props.setTransaction}/> : null}
-                </section>
-            </div>
-        </Card>
+                {transactionTypeSelection?.type === TransactionType.BANK_LOAN ?
+                    <BankLoanTransaction transaction={props.transaction}
+                                         setTransaction={props.setTransaction}/> : null}
+                {transactionTypeSelection?.type === TransactionType.SERVICE_REVENUES ?
+                    <ServiceRevenuesTransaction transaction={props.transaction}
+                                                setTransaction={props.setTransaction}/> : null}
+                {transactionTypeSelection?.type === TransactionType.PUBLIC_SERVICES_EXPENSES ?
+                    <PublicServicesExpensesTransaction transaction={props.transaction}
+                                                       setTransaction={props.setTransaction}/> : null}
+                {transactionTypeSelection?.type === TransactionType.RENT_EXPENSES ?
+                    <RentExpensesTransaction transaction={props.transaction}
+                                             setTransaction={props.setTransaction}/> : null}
+                {transactionTypeSelection?.type === TransactionType.WAGES_EXPENSES ?
+                    <WagesExpensesTransaction transaction={props.transaction}
+                                              setTransaction={props.setTransaction}/> : null}
+            </section>
+        </div>
     );
 }

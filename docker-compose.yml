@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  alumni-ratio-api:
+    container_name: alumni-ratio-api
+    image: ivanosevic/alumni-ratio-api:1.0
+    ports:
+      - "7000:7000"
+    networks:
+      - alumni-ratio-backend
+
+
+networks:
+  alumni-ratio-backend:

@@ -1,5 +1,7 @@
 package edu.pucmm.eict.exercises;
 
+import edu.pucmm.eict.journals.general.GeneralJournal;
+
 public class ExerciseSolver {
     private final Exercise exercise;
 
@@ -8,6 +10,8 @@ public class ExerciseSolver {
     }
 
     public SolvedExercise solve() {
-        return new SolvedExercise(exercise);
+        var generalJournal = new GeneralJournal(exercise);
+        exercise.getTransactions().forEach(generalJournal::addTransactionAsEntry);
+        return new SolvedExercise(exercise, generalJournal);
     }
 }

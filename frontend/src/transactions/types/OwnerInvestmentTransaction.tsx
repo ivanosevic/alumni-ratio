@@ -4,8 +4,8 @@ import {Transaction, TransactionType} from "../models/transaction.model";
 import AmountInput from "../common/AmountInput";
 
 interface OwnerInvestmentTransactionProps {
-    transaction: Transaction | undefined;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction | undefined>>;
+    transaction: Transaction;
+    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
 }
 
 function OwnerInvestmentTransaction(props: OwnerInvestmentTransactionProps) {

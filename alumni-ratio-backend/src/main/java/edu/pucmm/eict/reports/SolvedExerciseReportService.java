@@ -16,11 +16,10 @@ public class SolvedExerciseReportService {
         var pdfByteArray = new ByteArrayOutputStream();
         var pdfWriter = new PdfWriter(pdfByteArray);
         PdfDocument report = new PdfDocument(pdfWriter);
-
         var document = new Document(report);
 
-        var generalInformationSection = new GeneralInformationSection(report, solvedExercise, document);
-        var transactionSection = new TransactionSection(report, solvedExercise,document );
+        var generalInformationSection = new GeneralInformationSection(report, document, solvedExercise);
+        var transactionSection = new TransactionSection(report, solvedExercise, document);
         var generalJournalSection = new GeneralJournalSection(report, solvedExercise, document);
         var generalLedgerSection = new GeneralLedgerSection(report, solvedExercise, document);
         var trialBalanceSection = new TrialBalanceSection(report, solvedExercise, document);

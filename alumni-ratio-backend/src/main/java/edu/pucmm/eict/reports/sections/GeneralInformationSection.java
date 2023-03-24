@@ -14,13 +14,12 @@ import java.io.IOException;
 
 public class GeneralInformationSection extends SolvedExercisePDFSection {
 
-    public GeneralInformationSection(PdfDocument PdfDocument, SolvedExercise solvedExercise, Document document) {
+    public GeneralInformationSection(PdfDocument PdfDocument, Document document, SolvedExercise solvedExercise) {
         super(PdfDocument, solvedExercise, document);
     }
 
     @Override
-    public void sectionBody() throws IOException
-    {
+    public void sectionBody() throws IOException {
         var helveticaFont = PdfFontFactory.createFont(StandardFonts.HELVETICA);
         var mainHeaderText = new Text("Informaciones generales sobre la empresa")
                 .setFontColor(ColorConstants.BLACK)
