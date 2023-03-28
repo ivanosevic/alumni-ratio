@@ -11,6 +11,8 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
     }
 
     @Override
-    public void sectionBody() {
+    public void sectionBody()
+    {
+
     }
 }

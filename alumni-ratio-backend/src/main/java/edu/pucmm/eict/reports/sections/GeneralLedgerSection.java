@@ -616,9 +616,6 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
         document.add(publicServicesExpensesTable);
 
 
-
-
     }
-
 
 }
