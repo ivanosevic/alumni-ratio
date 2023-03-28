@@ -1,5 +1,7 @@
 package edu.pucmm.eict.accounts;
 
+import java.util.List;
+
 public class AccountBook {
 
     public static Integer CASH = 101;
@@ -14,4 +16,7 @@ public class AccountBook {
     public static Integer WAGES_EXPENSES = 601;
     public static Integer RENT_EXPENSES = 602;
     public static Integer PUBLIC_SERVICES_EXPENSES = 603;
+
+    public static List<Integer> ALL_ACCOUNTS = List.of(CASH, OFFICE_SUPPLIES, OFFICE_EQUIPMENT, LANDS, CUSTOMERS, NOTES_PAYABLES, ACCOUNTS_PAYABLES,
+            COMPANY_CAPITAL, SERVICES_REVENUES, WAGES_EXPENSES, RENT_EXPENSES, PUBLIC_SERVICES_EXPENSES);
 }

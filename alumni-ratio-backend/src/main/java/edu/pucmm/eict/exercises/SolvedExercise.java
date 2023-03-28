@@ -1,12 +1,14 @@
 package edu.pucmm.eict.exercises;
 
 import edu.pucmm.eict.journals.general.GeneralJournal;
+import edu.pucmm.eict.journals.ledger.GeneralLedger;
 
 import java.util.Objects;
 
 public class SolvedExercise {
     private final Exercise exercise;
     private GeneralJournal generalJournal;
+    private GeneralLedger generalLedger;
 
     public SolvedExercise(Exercise exercise) {
         this.exercise = exercise;
@@ -17,12 +19,30 @@ public class SolvedExercise {
         this.generalJournal = generalJournal;
     }
 
+    public SolvedExercise(Exercise exercise, GeneralJournal generalJournal, GeneralLedger generalLedger) {
+        this.exercise = exercise;
+        this.generalJournal = generalJournal;
+        this.generalLedger = generalLedger;
+    }
+
     public Exercise getExercise() {
         return exercise;
     }
 
     public GeneralJournal getGeneralJournal() {
         return generalJournal;
+    }
+
+    public void setGeneralJournal(GeneralJournal generalJournal) {
+        this.generalJournal = generalJournal;
+    }
+
+    public GeneralLedger getGeneralLedger() {
+        return generalLedger;
+    }
+
+    public void setGeneralLedger(GeneralLedger generalLedger) {
+        this.generalLedger = generalLedger;
     }
 
     @Override

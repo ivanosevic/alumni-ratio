@@ -1,6 +1,7 @@
 package edu.pucmm.eict.exercises;
 
 import edu.pucmm.eict.journals.general.GeneralJournal;
+import edu.pucmm.eict.journals.ledger.GeneralLedger;
 
 public class ExerciseSolver {
     private final Exercise exercise;
@@ -12,6 +13,8 @@ public class ExerciseSolver {
     public SolvedExercise solve() {
         var generalJournal = new GeneralJournal(exercise);
         exercise.getTransactions().forEach(generalJournal::addTransactionAsEntry);
-        return new SolvedExercise(exercise, generalJournal);
+        var generalLedger = new GeneralLedger(exercise);
+        generalLedger.carryOverFromGeneralJournal(generalJournal);
+        return new SolvedExercise(exercise, generalJournal, generalLedger);
     }
 }
