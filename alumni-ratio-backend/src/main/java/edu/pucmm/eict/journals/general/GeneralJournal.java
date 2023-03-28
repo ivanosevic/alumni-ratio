@@ -5,6 +5,8 @@ import edu.pucmm.eict.exercises.Exercise;
 import edu.pucmm.eict.journals.general.analyzer.*;
 import edu.pucmm.eict.transactions.Transaction;
 import edu.pucmm.eict.transactions.TransactionType;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +16,13 @@ import java.util.stream.Collectors;
 public class GeneralJournal {
 
     @JsonIgnore
-    private final Exercise exercise;
-    private final List<GeneralJournalEntry> generalJournalEntries;
+    @BsonIgnore
+    private Exercise exercise;
+    private List<GeneralJournalEntry> generalJournalEntries;
+
+    public GeneralJournal() {
+        this.generalJournalEntries = new ArrayList<>();
+    }
 
     public GeneralJournal(Exercise exercise) {
         this.exercise = exercise;

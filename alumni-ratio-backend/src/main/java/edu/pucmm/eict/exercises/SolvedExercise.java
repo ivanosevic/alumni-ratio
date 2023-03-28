@@ -2,13 +2,25 @@ package edu.pucmm.eict.exercises;
 
 import edu.pucmm.eict.journals.general.GeneralJournal;
 import edu.pucmm.eict.journals.ledger.GeneralLedger;
+import org.bson.BsonType;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.codecs.pojo.annotations.BsonRepresentation;
 
 import java.util.Objects;
 
 public class SolvedExercise {
-    private final Exercise exercise;
+
+    @BsonId
+    @BsonProperty("_id")
+    @BsonRepresentation(BsonType.OBJECT_ID)
+    private String id;
+    private Exercise exercise;
     private GeneralJournal generalJournal;
     private GeneralLedger generalLedger;
+
+    public SolvedExercise() {
+    }
 
     public SolvedExercise(Exercise exercise) {
         this.exercise = exercise;
@@ -23,6 +35,14 @@ public class SolvedExercise {
         this.exercise = exercise;
         this.generalJournal = generalJournal;
         this.generalLedger = generalLedger;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Exercise getExercise() {
@@ -45,24 +65,30 @@ public class SolvedExercise {
         this.generalLedger = generalLedger;
     }
 
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SolvedExercise that = (SolvedExercise) o;
-        return Objects.equals(exercise, that.exercise) && Objects.equals(generalJournal, that.generalJournal);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(exercise, generalJournal);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "SolvedExercise{" +
-                "exercise=" + exercise +
+                "id='" + id + '\'' +
+                ", exercise=" + exercise +
                 ", generalJournal=" + generalJournal +
+                ", generalLedger=" + generalLedger +
                 '}';
     }
 }

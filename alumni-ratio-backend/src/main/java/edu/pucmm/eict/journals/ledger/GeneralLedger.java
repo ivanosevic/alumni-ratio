@@ -1,31 +1,34 @@
 package edu.pucmm.eict.journals.ledger;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.pucmm.eict.accounts.AccountBook;
 import edu.pucmm.eict.exercises.Exercise;
 import edu.pucmm.eict.journals.general.GeneralJournal;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 public class GeneralLedger {
 
     @JsonIgnore
-    private final Exercise exercise;
+    @BsonIgnore
+    private Exercise exercise;
 
-    private final Map<Integer, List<GeneralLedgerEntry>> entriesPerAccount;
+    private List<GeneralLedgerAccount> entriesPerAccount;
+
+    public GeneralLedger() {
+    }
 
     public GeneralLedger(Exercise exercise) {
         this.exercise = exercise;
-        this.entriesPerAccount = new HashMap<>();
+        this.entriesPerAccount = new ArrayList<>();
     }
 
     public void carryOverFromGeneralJournal(GeneralJournal generalJournal) {
         AccountBook.ALL_ACCOUNTS.forEach(accountNumber -> {
             var generalJournalRowsByAccount = generalJournal.getRowsByAccountReference(accountNumber);
             var generalLedgerEntries = generalJournalRowsByAccount.stream().map(row -> new GeneralLedgerEntry(row.getDate(), row.getReference(), row.getDebit(), row.getCredit())).toList();
-            entriesPerAccount.put(accountNumber, generalLedgerEntries);
+            entriesPerAccount.add(new GeneralLedgerAccount(accountNumber, generalLedgerEntries));
         });
     }
 
@@ -33,7 +36,7 @@ public class GeneralLedger {
         return exercise;
     }
 
-    public Map<Integer, List<GeneralLedgerEntry>> getEntriesPerAccount() {
+    public List<GeneralLedgerAccount> getEntriesPerAccount() {
         return entriesPerAccount;
     }
 
