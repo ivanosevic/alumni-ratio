@@ -10,9 +10,17 @@ import io.javalin.openapi.OpenApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Map;
+
 public class ExerciseController {
 
     private final static Logger logger = LoggerFactory.getLogger(ExerciseController.class);
+
+    private final SolvedExerciseRepository solvedExerciseRepository;
+
+    public ExerciseController(SolvedExerciseRepository solvedExerciseRepository) {
+        this.solvedExerciseRepository = solvedExerciseRepository;
+    }
 
     @OpenApi(
             summary = "Solves a simple accounting exercise",
@@ -30,21 +38,27 @@ public class ExerciseController {
         Exercise exercise = ctx.bodyAsClass(Exercise.class);
         var exerciseSolver = new ExerciseSolver(exercise);
         var solvedExercise = exerciseSolver.solve();
+        solvedExerciseRepository.saveSolvedExercise(solvedExercise);
         ctx.json(solvedExercise);
     }
 
     public void getExercisePdf(Context ctx) {
-        Exercise exercise = ctx.bodyAsClass(Exercise.class);
-        var exerciseSolver = new ExerciseSolver(exercise);
-        var solvedExercise = exerciseSolver.solve();
-        var reportService = new SolvedExerciseReportService();
-        var report = reportService.getSolvedExerciseReport(solvedExercise);
-        ctx.result(report.getContent())
-                .contentType(ContentType.APPLICATION_PDF)
-                .header(Header.CONTENT_DISPOSITION, "attachment; filename=exercise.pdf")
-                .header("Cache-Control", "no-cache, no-store, must-revalidate")
-                .header("Pragma", "no-cache")
-                .header("Expires", "0");
+        var solvedExerciseId = ctx.pathParam("solvedExerciseId");
+        var solvedExercise = solvedExerciseRepository.findById(solvedExerciseId);
+        solvedExercise.ifPresentOrElse(se -> {
+            var reportService = new SolvedExerciseReportService();
+            var report = reportService.getSolvedExerciseReport(se);
+            ctx.result(report.getContent())
+                    .contentType(ContentType.APPLICATION_PDF)
+                    .header(Header.CONTENT_DISPOSITION, "attachment; filename=exercise.pdf")
+                    .header("Cache-Control", "no-cache, no-store, must-revalidate")
+                    .header("Pragma", "no-cache")
+                    .header("Expires", "0");
+        }, () -> {
+            var errorMessage = Map.of("message", "El ejercicio para sacar el PDF no esta disponible en nuestro sistema.");
+            ctx.status(HttpStatus.NOT_FOUND).json(errorMessage);
+        });
+
     }
 
     public void handlePdfGenerationErrorException(PDFGenerationErrorException ex, Context ctx) {
