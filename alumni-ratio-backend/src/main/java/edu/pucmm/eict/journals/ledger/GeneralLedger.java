@@ -40,6 +40,11 @@ public class GeneralLedger {
         return entriesPerAccount;
     }
 
+    public List<GeneralLedgerEntry> getEntriesPerAccount(Integer account) {
+        var results =  entriesPerAccount.stream().filter(generalLedgerAccount -> generalLedgerAccount.getAccount().equals(account)).toList();
+        return results.stream().flatMap(generalLedgerAccount -> generalLedgerAccount.getEntries().stream()).toList();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

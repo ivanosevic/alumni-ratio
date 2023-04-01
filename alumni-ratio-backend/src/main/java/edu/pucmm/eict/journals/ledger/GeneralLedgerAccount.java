@@ -1,8 +1,5 @@
 package edu.pucmm.eict.journals.ledger;
 
-import edu.pucmm.eict.journals.general.GeneralJournalEntry;
-import edu.pucmm.eict.journals.general.GeneralJournalRow;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -41,12 +38,12 @@ public class GeneralLedgerAccount implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GeneralLedgerAccount that = (GeneralLedgerAccount) o;
-        return Objects.equals(account, that.account) && Objects.equals(entries, that.entries);
+        return Objects.equals(account, that.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(account, entries);
+        return Objects.hash(account);
     }
 
     @Override
