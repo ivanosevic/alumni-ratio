@@ -43,31 +43,31 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
 
         var trialBalanceTable = new Table(UnitValue.createPercentArray(5)).useAllAvailableWidth();
 
-        var trialBalanceTitle = new Cell(0, 4)
+        var trialBalanceTitle = new Cell(0, 5)
                 .add(new Paragraph("Balanza de Comprobación").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var trialBalanceSheetTitle = new Cell(0, 1)
+       /* var trialBalanceSheetTitle = new Cell(0, 1)
                 .add(new Paragraph("Hoja 1").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
-                .setFontSize(12f);
+                .setFontSize(12f);*/
 
-        var accountNumberHeaderCell = new Cell()
+        var accountNumberHeaderCell = new Cell(2,0)
                 .add(new Paragraph("No. de Cuenta").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var detailHeaderCell = new Cell()
+        var detailHeaderCell = new Cell(2,2)
                 .add(new Paragraph("Concepto").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var countableBalanceHeaderCell = new Cell()
+        var countableBalanceHeaderCell = new Cell(0,2)
                 .add(new Paragraph("Saldos").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
@@ -86,7 +86,7 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
                 .setFontSize(12f);
 
         trialBalanceTable.addHeaderCell(trialBalanceTitle);
-        trialBalanceTable.addHeaderCell(trialBalanceSheetTitle);
+        //trialBalanceTable.addHeaderCell(trialBalanceSheetTitle);
         trialBalanceTable.addHeaderCell(accountNumberHeaderCell);
         trialBalanceTable.addHeaderCell(detailHeaderCell);
         trialBalanceTable.addHeaderCell(countableBalanceHeaderCell);
