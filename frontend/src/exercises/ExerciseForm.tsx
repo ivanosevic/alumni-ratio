@@ -69,7 +69,7 @@ function ExerciseForm(props: ExerciseFormProp) {
       <>
         <div className="formgrid grid">
           <div className="field col">
-            <label htmlFor="companyName">Company Name</label>
+            <label htmlFor="companyName">Nombre de la empresa</label>
             <InputText id="companyName"
                        className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                        value={props.exerciseForm?.companyName} onChange={onCompanyNameValueChange}/>
@@ -77,7 +77,7 @@ function ExerciseForm(props: ExerciseFormProp) {
         </div>
         <div className="formgrid grid">
           <div className="field col">
-            <label htmlFor="companyOwner">Company Owner</label>
+            <label htmlFor="companyOwner">Dueño de la empresa</label>
             <InputText id="companyOwner"
                        className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                        value={props.exerciseForm?.ownerName} onChange={onOwnerNameValueChange}/>
@@ -85,7 +85,7 @@ function ExerciseForm(props: ExerciseFormProp) {
         </div>
         <div className="formgrid grid">
           <div className="field col">
-            <label htmlFor="monthOperations">Month of Operations</label>
+            <label htmlFor="monthOperations">Mes de operaciones</label>
             <InputNumber id="monthOperations"
                          className="text-base text-color p-0.5 appearance-none outline-none focus:border-primary w-full"
                          value={props.exerciseForm?.monthOperations} onValueChange={onMonthOfOperationValueChange}
@@ -94,7 +94,7 @@ function ExerciseForm(props: ExerciseFormProp) {
         </div>
         <div className="formgrid grid">
           <div className="field col">
-            <label htmlFor="yearOperations">Year of Operations</label>
+            <label htmlFor="yearOperations">Año de operaciones</label>
             <InputNumber id="yearOperations"
                          className="text-base text-color p-0.5 border-round appearance-none outline-none focus:border-primary w-full"
                          value={props.exerciseForm?.yearOperations} onValueChange={onYearsOfOperationValueChange}
@@ -104,8 +104,8 @@ function ExerciseForm(props: ExerciseFormProp) {
         <div className="formgroup-inline">
           <div className="field-checkbox">
             <Checkbox checked={props.exerciseForm.requiresAssistance} onChange={requestAssistanceValueChange}/>
-            <label htmlFor="yearOperations">Do you want the application to give you a guide through solving the
-              exercise?</label>
+            <label htmlFor="yearOperations">¿Desea que la aplicación le generé una guia paso a paso para resolver su
+              ejercicio?</label>
           </div>
         </div>
       </>

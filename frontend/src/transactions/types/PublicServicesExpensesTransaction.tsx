@@ -4,8 +4,8 @@ import {InputNumberValueChangeEvent} from "primereact/inputnumber";
 import AmountInput from "../common/AmountInput";
 
 interface PublicServicesExpensesTransactionProps {
-    transaction: Transaction | undefined;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction | undefined>>;
+    transaction: Transaction;
+    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
 }
 
 

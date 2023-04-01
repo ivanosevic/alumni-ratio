@@ -1,14 +1,20 @@
 package edu.pucmm.eict.journals.general;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class GeneralJournalEntry {
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private LocalDate date;
     private String explanation;
     private final List<GeneralJournalRow> generalJournalRows;
+    public GeneralJournalEntry() {
+        this.generalJournalRows = new ArrayList<>();
+    }
 
     public GeneralJournalEntry(LocalDate date, String explanation) {
         this.date = date;

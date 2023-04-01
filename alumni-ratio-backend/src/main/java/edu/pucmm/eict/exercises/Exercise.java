@@ -44,6 +44,26 @@ public class Exercise {
         return transactions;
     }
 
+    public void setCompanyOwner(String companyOwner) {
+        this.companyOwner = companyOwner;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setMonthOperations(Integer monthOperations) {
+        this.monthOperations = monthOperations;
+    }
+
+    public void setYearOperations(Integer yearOperations) {
+        this.yearOperations = yearOperations;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

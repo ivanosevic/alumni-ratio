@@ -4,8 +4,8 @@ import {Transaction, TransactionType} from "../models/transaction.model";
 import AmountInput from "../common/AmountInput";
 
 interface BankLoanTransactionProps {
-    transaction: Transaction | undefined;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction | undefined>>;
+    transaction: Transaction;
+    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
 }
 
 export function BankLoanTransaction(props: BankLoanTransactionProps) {
