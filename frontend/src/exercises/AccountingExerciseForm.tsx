@@ -9,9 +9,9 @@ import {Button} from "primereact/button";
 
 
 function AccountingExerciseForm() {
-  const [transactions, setTransactions] = useState<Transaction[]>([new Transaction()]);
+  const [transactions, setTransactions] = useState<Transaction[]>([new Transaction(), new Transaction()]);
   const [exerciseFormModel, setExerciseFormModel] = useState<ExerciseFormModel>(new ExerciseFormModel());
-  const [activeStepItemIndex, setActiveStepItemIndex] = useState(1);
+  const [activeStepItemIndex, setActiveStepItemIndex] = useState(0);
   const items: MenuItem[] = [
     {
       label: 'Informaciones Generales'
@@ -33,11 +33,11 @@ function AccountingExerciseForm() {
   }
 
   const goBackToPreviousStep = () => {
-    setActiveStepItemIndex(activeStepItemIndex-1);
+    setActiveStepItemIndex(activeStepItemIndex - 1);
   }
 
   const goNextStep = () => {
-    setActiveStepItemIndex(activeStepItemIndex+1);
+    setActiveStepItemIndex(activeStepItemIndex + 1);
   }
 
   const formFooter = () => {
