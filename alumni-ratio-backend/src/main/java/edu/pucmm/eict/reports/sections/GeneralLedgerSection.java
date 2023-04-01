@@ -21,6 +21,8 @@ import java.util.Locale;
 
 public class GeneralLedgerSection extends SolvedExercisePDFSection {
 
+
+
     public GeneralLedgerSection(PdfDocument pdfDocument, SolvedExercise solvedExercise, Document document) {
         super(pdfDocument, solvedExercise, document);
     }
@@ -32,11 +34,11 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var generalLedgerSheetTitle = new Cell(0, 1)
+        /*var generalLedgerSheetTitle = new Cell(0, 1)
                 .add(new Paragraph("Hoja 1").setTextAlignment(TextAlignment.CENTER))
                 .setFont(font)
                 .setFontColor(ColorConstants.BLACK)
-                .setFontSize(12f);
+                .setFontSize(12f);*/
 
         var dateHeaderCell = new Cell()
                 .add(new Paragraph("Fecha").setTextAlignment(TextAlignment.CENTER))
@@ -71,7 +73,7 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
         var generalLedgerTable = new Table(UnitValue.createPercentArray(5)).useAllAvailableWidth();
 
         generalLedgerTable.addHeaderCell(cashTableAccountTitle);
-        generalLedgerTable.addHeaderCell(generalLedgerSheetTitle);
+        //generalLedgerTable.addHeaderCell(generalLedgerSheetTitle);
         generalLedgerTable.addHeaderCell(dateHeaderCell);
         generalLedgerTable.addHeaderCell(detailHeaderCell);
         generalLedgerTable.addHeaderCell(debitHeaderCell);
@@ -99,17 +101,17 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
 
 
         var cashTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.CASH);
-        var officeSuppliesTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.OFFICE_SUPPLIES);
-        var officeEquipmentTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.OFFICE_EQUIPMENT);
-        var landsTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.LANDS);
-        var customersTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.CUSTOMERS);
-        var notesPayablesTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.NOTES_PAYABLES);
-        var accountsPayablesTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.ACCOUNTS_PAYABLES);
-        var companyCapitalTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.COMPANY_CAPITAL);
-        var services_RevenuesTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.SERVICES_REVENUES);
-        var wagesExpensesTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.WAGES_EXPENSES);
-        var rentExpensesTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.RENT_EXPENSES);
-        var publicServicesExpensesTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.PUBLIC_SERVICES_EXPENSES);
+        var officeSuppliesTable = buildGeneralLedgerTable("Materiales de Oficina", helveticaFont, AccountBook.OFFICE_SUPPLIES);
+        var officeEquipmentTable = buildGeneralLedgerTable("Equipos de Oficina", helveticaFont, AccountBook.OFFICE_EQUIPMENT);
+        var landsTable = buildGeneralLedgerTable("Terrenos", helveticaFont, AccountBook.LANDS);
+        var customersTable = buildGeneralLedgerTable("Clientes", helveticaFont, AccountBook.CUSTOMERS);
+        var notesPayablesTable = buildGeneralLedgerTable("Cuentas por Cobrar", helveticaFont, AccountBook.NOTES_PAYABLES);
+        var accountsPayablesTable = buildGeneralLedgerTable("Cuentas por Pagar", helveticaFont, AccountBook.ACCOUNTS_PAYABLES);
+        var companyCapitalTable = buildGeneralLedgerTable("Capital", helveticaFont, AccountBook.COMPANY_CAPITAL);
+        var services_RevenuesTable = buildGeneralLedgerTable("Ingresos", helveticaFont, AccountBook.SERVICES_REVENUES);
+        var wagesExpensesTable = buildGeneralLedgerTable("Salarios", helveticaFont, AccountBook.WAGES_EXPENSES);
+        var rentExpensesTable = buildGeneralLedgerTable("Renta", helveticaFont, AccountBook.RENT_EXPENSES);
+        var publicServicesExpensesTable = buildGeneralLedgerTable("Gastos", helveticaFont, AccountBook.PUBLIC_SERVICES_EXPENSES);
 
         document.add(cashTable);
         document.add(officeSuppliesTable);
