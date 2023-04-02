@@ -3,6 +3,7 @@ import {ExerciseFormModel} from "./ExerciseForm";
 import {Button} from "primereact/button";
 import React from "react";
 import {confirmDialog, ConfirmDialog} from "primereact/confirmdialog";
+import {useNavigate} from "react-router-dom";
 
 interface ConfirmExerciseProps {
   transactions: Transaction[];
@@ -10,8 +11,21 @@ interface ConfirmExerciseProps {
 }
 
 function ConfirmExercise(props: ConfirmExerciseProps) {
+  const navigate = useNavigate();
+
   const acceptAndSolveExercise = () => {
-    console.log('Sending to other react view.')
+    navigate('/solved-exercise', {
+      state: {
+        data: {
+          companyName: props.exerciseFormModel.companyName,
+          companyOwner: props.exerciseFormModel.ownerName,
+          requiresAssistance: props.exerciseFormModel.requiresAssistance,
+          monthOperations: props.exerciseFormModel.monthOperations,
+          yearOperations: props.exerciseFormModel.yearOperations,
+          transactions: props.transactions
+        }
+      }
+    });
   }
 
   const confirmationModal = () => {

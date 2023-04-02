@@ -4,12 +4,12 @@ import {InputNumber, InputNumberValueChangeEvent} from 'primereact/inputnumber';
 import {Checkbox, CheckboxChangeEvent} from "primereact/checkbox";
 
 
-export class ExerciseFormModel {
-  companyName?: string;
-  ownerName?: string;
-  requiresAssistance: boolean = false;
-  monthOperations?: number;
-  yearOperations?: number;
+export interface ExerciseFormModel {
+  companyName: string;
+  ownerName: string;
+  requiresAssistance: boolean;
+  monthOperations: number;
+  yearOperations: number;
 }
 
 interface ExerciseFormProp {
@@ -21,19 +21,17 @@ function ExerciseForm(props: ExerciseFormProp) {
 
 
   const onCompanyNameValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    props.setExerciseFormModel(prevState => {
-      return {
+    props.setExerciseFormModel(prevState => ({
         ...prevState,
-        companyName: e.target.value
-      }
-    });
+        companyName: e.target.value ?? ''
+    }));
 
   }
   const onOwnerNameValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.setExerciseFormModel(prevState => {
       return {
         ...prevState,
-        ownerName: e.target.value
+        ownerName: e.target.value ?? ''
       }
     });
   }
@@ -109,7 +107,7 @@ function ExerciseForm(props: ExerciseFormProp) {
           </div>
         </div>
       </>
-  )
+  );
 }
 
 export default ExerciseForm;

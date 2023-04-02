@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.pucmm.eict.accounts.AccountBook;
 import edu.pucmm.eict.exercises.Exercise;
 import edu.pucmm.eict.journals.general.GeneralJournal;
-import org.bson.codecs.pojo.annotations.BsonIgnore;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class GeneralLedger {
 
     @JsonIgnore
-    @BsonIgnore
     private Exercise exercise;
 
     private List<GeneralLedgerAccount> entriesPerAccount;

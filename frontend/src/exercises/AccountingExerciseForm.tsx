@@ -10,8 +10,14 @@ import ConfirmExercise from "./ConfirmExercise";
 
 
 function AccountingExerciseForm() {
-  const [transactions, setTransactions] = useState<Transaction[]>([new Transaction(), new Transaction()]);
-  const [exerciseFormModel, setExerciseFormModel] = useState<ExerciseFormModel>(new ExerciseFormModel());
+  const [transactions, setTransactions] = useState<Transaction[]>([new Transaction()]);
+  const [exerciseFormModel, setExerciseFormModel] = useState<ExerciseFormModel>({
+    yearOperations: new Date().getFullYear(),
+    requiresAssistance: false,
+    ownerName: '',
+    companyName: '',
+    monthOperations: new Date().getMonth()
+  });
   const [activeStepItemIndex, setActiveStepItemIndex] = useState(0);
   const items: MenuItem[] = [
     {
