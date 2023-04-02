@@ -66,4 +66,13 @@ public class ExerciseController {
         logger.error("Error while generating PDF Report: { }", ex);
         logger.error("Further Details: { }", ex.getFurtherDetails());
     }
+
+    public void getSolvedExerciseById(Context ctx) {
+        var solvedExerciseId = ctx.pathParam("solvedExerciseId");
+        var solvedExercise = solvedExerciseRepository.findById(solvedExerciseId);
+        solvedExercise.ifPresentOrElse(ctx::json, () -> {
+            var errorMessage = Map.of("message", "El ejercicio no se encuentra en el sistema.");
+            ctx.status(HttpStatus.NOT_FOUND).json(errorMessage);
+        });
+    }
 }

@@ -30,32 +30,64 @@ public class Transaction {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getPaymentType() {
         return paymentType;
+    }
+
+    public void setPaymentType(Integer paymentType) {
+        this.paymentType = paymentType;
     }
 
     public Integer getDay() {
         return day;
     }
 
+    public void setDay(Integer day) {
+        this.day = day;
+    }
+
     public BigDecimal getAmount() {
         return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public BigDecimal getCredit() {
         return credit;
     }
 
+    public void setCredit(BigDecimal credit) {
+        this.credit = credit;
+    }
+
     public BigDecimal getDebit() {
         return debit;
+    }
+
+    public void setDebit(BigDecimal debit) {
+        this.debit = debit;
     }
 
     public Integer getTransactionType() {
         return transactionType;
     }
 
+    public void setTransactionType(Integer transactionType) {
+        this.transactionType = transactionType;
+    }
+
     public Integer getTransactionReference() {
         return transactionReference;
+    }
+
+    public void setTransactionReference(Integer transactionReference) {
+        this.transactionReference = transactionReference;
     }
 
     @Override
@@ -71,4 +103,6 @@ public class Transaction {
                 ", transactionReference=" + transactionReference +
                 '}';
     }
+
+
 }

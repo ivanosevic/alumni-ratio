@@ -45,6 +45,14 @@ public class GeneralLedger {
         return results.stream().flatMap(generalLedgerAccount -> generalLedgerAccount.getEntries().stream()).toList();
     }
 
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setEntriesPerAccount(List<GeneralLedgerAccount> entriesPerAccount) {
+        this.entriesPerAccount = entriesPerAccount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

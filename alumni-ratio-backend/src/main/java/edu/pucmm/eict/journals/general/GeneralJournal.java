@@ -94,6 +94,14 @@ public class GeneralJournal {
         return exercise;
     }
 
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setGeneralJournalEntries(List<GeneralJournalEntry> generalJournalEntries) {
+        this.generalJournalEntries = generalJournalEntries;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

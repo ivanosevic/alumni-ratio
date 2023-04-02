@@ -47,6 +47,7 @@ public class AlumniRatioApplication {
 
         var exerciseController = new ExerciseController(solvedExerciseRepository);
         app.post("/solve-exercise", exerciseController::solveExercise);
+        app.get("/solve-exercise/{solvedExerciseId}", exerciseController::getSolvedExerciseById);
         app.get("/solve-exercise/{solvedExerciseId}/pdf", exerciseController::getExercisePdf);
         app.exception(PDFGenerationErrorException.class, exerciseController::handlePdfGenerationErrorException);
         app.start(7000);
