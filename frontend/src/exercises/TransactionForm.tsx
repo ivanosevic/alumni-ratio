@@ -9,14 +9,19 @@ interface TransactionFormProps {
 }
 
 function TransactionForm(props: TransactionFormProps) {
+  const addNewTransactions = () => {
+    props.setTransactions(prevState => {
+      return [...prevState, new Transaction()];
+    })
+  }
   return (
       <>
-        <section className="transaction-controls flex flex-wrap align-items-center justify-content-end mb-5">
-          <Button severity="info" rounded className="pi pi-plus">Nueva Transacción</Button>
-        </section>
-
         <section>
           <TransactionComponent transactions={props.transactions} setTransactions={props.setTransactions}/>
+        </section>
+
+        <section className="transaction-controls flex flex-wrap align-items-center justify-content-center mb-5 mt-5">
+          <Button severity="warning" rounded onClick={addNewTransactions}>Nueva Transacción</Button>
         </section>
       </>
   );

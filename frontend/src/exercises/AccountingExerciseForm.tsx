@@ -19,9 +19,6 @@ function AccountingExerciseForm() {
     },
     {
       label: 'Transacciones'
-    },
-    {
-      label: 'Confirmación',
     }
   ];
 
@@ -46,7 +43,7 @@ function AccountingExerciseForm() {
         <>
           <div className="flex flex-wrap align-items-center justify-content-between gap-2">
             <Button label={'Atrás'} disabled={canGoPrevious()} onClick={goBackToPreviousStep} raised/>
-            {activeStepItemIndex === 2 ?
+            {activeStepItemIndex === 1 ?
                 <ConfirmExercise transactions={transactions} exerciseFormModel={exerciseFormModel}/> :
                 <Button label={'Siguiente'} disabled={canGoNext()} onClick={goNextStep} raised/>}
 

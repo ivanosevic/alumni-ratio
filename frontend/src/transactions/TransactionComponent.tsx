@@ -150,7 +150,7 @@ export default function TransactionComponent(props: TransactionComponentProps) {
                         <OwnerInvestmentTransaction transaction={t}
                                                     onValueChange={(e: InputNumberValueChangeEvent) => changeTransactionValueProperty(e, index)}/> : null}
                     {t.type === TransactionType.OFFICE_SUPPLIES_PURCHASE ?
-                        <OfficeSuppliesPurchaseTransaction transaction={props.transaction}
+                        <OfficeSuppliesPurchaseTransaction transaction={t}
                                                            onPaymentTypeChange={(e) => changeTransactionPaymentTypeProperty(index, e)}
                                                            onDebitChange={(e) => changeTransactionDebitProperty(e, index)}
                                                            onCreditChange={(e) => changeTransactionCreditProperty(e, index)}
