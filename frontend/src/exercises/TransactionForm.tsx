@@ -9,12 +9,10 @@ interface TransactionFormProps {
 }
 
 function TransactionForm(props: TransactionFormProps) {
-  const [activeTransactionIndex, setActiveTransactionIndex] = useState<number>(0);
-
   return (
       <>
-        <section className="transaction-controls flex flex-wrap align-items-center justify-content-between gap-2 mb-5">
-          <Button severity="info" rounded className="pi pi-plus"></Button>
+        <section className="transaction-controls flex flex-wrap align-items-center justify-content-end mb-5">
+          <Button severity="info" rounded className="pi pi-plus">Nueva Transacción</Button>
         </section>
 
         <section>

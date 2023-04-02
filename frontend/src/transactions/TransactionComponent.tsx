@@ -12,6 +12,7 @@ import PublicServicesExpensesTransaction from "./types/PublicServicesExpensesTra
 import RentExpensesTransaction from "./types/RentExpensesTransaction";
 import WagesExpensesTransaction from "./types/WagesExpensesTransaction";
 import {InputNumberValueChangeEvent} from "primereact/inputnumber";
+import {PaymentTypeSelection} from "./common/PaymentTypeDropdown";
 
 /**
  * This class is used when selecting the nature of the transaction on a dropdown.
@@ -29,8 +30,6 @@ interface TransactionComponentProps {
 }
 
 export default function TransactionComponent(props: TransactionComponentProps) {
-  const [transactionTypeSelection, setTransactionTypeSelection] = useState<TransactionTypeSelection | null | undefined>();
-
   const transactionTypeSelections: TransactionTypeSelection[] = [
     {
       label: 'Inversión del dueño al negocio',
@@ -95,63 +94,100 @@ export default function TransactionComponent(props: TransactionComponentProps) {
     });
   };
 
+  const changeTransactionCreditProperty = (e: InputNumberValueChangeEvent, i: number) => {
+    props.setTransactions(prevState => {
+      const tempTransactions = [...prevState];
+      tempTransactions[i].credit = e.value ?? 0
+      return tempTransactions;
+    });
+  };
+
+  const changeTransactionDebitProperty = (e: InputNumberValueChangeEvent, i: number) => {
+    props.setTransactions(prevState => {
+      const tempTransactions = [...prevState];
+      tempTransactions[i].debit = e.value ?? 0
+      return tempTransactions;
+    });
+  };
+
+  const changeTransactionPaymentTypeProperty = (i: number, e: PaymentTypeSelection) => {
+    props.setTransactions(prevState => {
+      const tempTransactions = [...prevState];
+      tempTransactions[i].paymentType = e.type
+      return tempTransactions;
+    });
+  };
+
   return (
       <>
         {props.transactions.map((t, index) => {
           return (
-              <div className="formgrid grid mb-5" key={index}>
-                <section className="col-12">
-                  <div className="field">
-                    <h2>Transacción # {index + 1}</h2>
-                    <label>1. Selecciona la fecha de la transacción</label>
-                    <div className="col">
-                      <Calendar className="w-full md:w-5" value={t.date}
-                                onChange={(e: CalendarChangeEvent) => changeTransactionDateProperty(e, index)}
-                                showIcon/>
+              <Card title={'Transacción ' + (index + 1)} className="mb-3" key={index}>
+                <div className="formgrid grid">
+                  <section className="col-12">
+                    <div className="field">
+                      <label>1. Selecciona la fecha de la transacción</label>
+                      <div className="col">
+                        <Calendar className="w-full md:w-5" value={t.date}
+                                  onChange={(e: CalendarChangeEvent) => changeTransactionDateProperty(e, index)}
+                                  showIcon/>
+                      </div>
                     </div>
-                  </div>
-                </section>
-                <section className="col-12">
-                  <div className="field">
-                    <label>2. ¿Qué clase de operación se realizó en esta transacción?</label>
-                    <div className="col">
-                      <Dropdown value={transactionTypeSelections.find(value => value.type === t.type)}
-                                onChange={(e) => changeTransactionTypeProperty(index, e.value)}
-                                options={transactionTypeSelections} optionLabel="label" className="w-full md:w-5"
-                                placeholder="Seleccione la operación realizada"/>
+                  </section>
+                  <section className="col-12">
+                    <div className="field">
+                      <label>2. ¿Qué clase de operación se realizó en esta transacción?</label>
+                      <div className="col">
+                        <Dropdown value={transactionTypeSelections.find(value => value.type === t.type)}
+                                  onChange={(e) => changeTransactionTypeProperty(index, e.value)}
+                                  options={transactionTypeSelections} optionLabel="label" className="w-full md:w-5"
+                                  placeholder="Seleccione la operación realizada"/>
+                      </div>
                     </div>
-                  </div>
-                </section>
-                <section className="col-12">
-                  {t.type === TransactionType.OWNER_INVESTMENT ?
-                      <OwnerInvestmentTransaction transaction={t}
+                  </section>
+                  <section className="col-12">
+                    {t.type === TransactionType.OWNER_INVESTMENT ?
+                        <OwnerInvestmentTransaction transaction={t}
+                                                    onValueChange={(e: InputNumberValueChangeEvent) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.OFFICE_SUPPLIES_PURCHASE ?
+                        <OfficeSuppliesPurchaseTransaction transaction={props.transaction}
+                                                           onPaymentTypeChange={(e) => changeTransactionPaymentTypeProperty(index, e)}
+                                                           onDebitChange={(e) => changeTransactionDebitProperty(e, index)}
+                                                           onCreditChange={(e) => changeTransactionCreditProperty(e, index)}
+                                                           onAmountChange={(e) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.OFFICE_EQUIPMENT_PURCHASE ?
+                        <OfficeSuppliesPurchaseTransaction transaction={t}
+                                                           onPaymentTypeChange={(e) => changeTransactionPaymentTypeProperty(index, e)}
+                                                           onDebitChange={(e) => changeTransactionDebitProperty(e, index)}
+                                                           onCreditChange={(e) => changeTransactionCreditProperty(e, index)}
+                                                           onAmountChange={(e) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.LAND_PURCHASE ?
+                        <LandPurchaseTransaction transaction={t}
+                                                 onPaymentTypeChange={(e) => changeTransactionPaymentTypeProperty(index, e)}
+                                                 onDebitChange={(e) => changeTransactionDebitProperty(e, index)}
+                                                 onCreditChange={(e) => changeTransactionCreditProperty(e, index)}
+                                                 onAmountChange={(e) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.BANK_LOAN ?
+                        <BankLoanTransaction transaction={t}
+                                             onValueChange={(e: InputNumberValueChangeEvent) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.SERVICE_REVENUES ?
+                        <ServiceRevenuesTransaction transaction={t}
+                                                    onPaymentTypeChange={(e) => changeTransactionPaymentTypeProperty(index, e)}
+                                                    onDebitChange={(e) => changeTransactionDebitProperty(e, index)}
+                                                    onCreditChange={(e) => changeTransactionCreditProperty(e, index)}
+                                                    onAmountChange={(e) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.PUBLIC_SERVICES_EXPENSES ?
+                        <PublicServicesExpensesTransaction transaction={t}
+                                                           onValueChange={(e: InputNumberValueChangeEvent) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.RENT_EXPENSES ?
+                        <RentExpensesTransaction transaction={t}
+                                                 onValueChange={(e: InputNumberValueChangeEvent) => changeTransactionValueProperty(e, index)}/> : null}
+                    {t.type === TransactionType.WAGES_EXPENSES ?
+                        <WagesExpensesTransaction transaction={t}
                                                   onValueChange={(e: InputNumberValueChangeEvent) => changeTransactionValueProperty(e, index)}/> : null}
-                  {/*{transactionTypeSelection?.type === TransactionType.OFFICE_SUPPLIES_PURCHASE ?*/}
-                  {/*    <OfficeSuppliesPurchaseTransaction transaction={props.transaction}*/}
-                  {/*                                       setTransaction={props.setTransaction}/> : null}*/}
-                  {/*{transactionTypeSelection?.type === TransactionType.OFFICE_EQUIPMENT_PURCHASE ?*/}
-                  {/*    <OfficeSuppliesPurchaseTransaction transaction={props.transaction}*/}
-                  {/*                                       setTransaction={props.setTransaction}/> : null}*/}
-                  {/*{transactionTypeSelection?.type === TransactionType.LAND_PURCHASE ?*/}
-                  {/*    <LandPurchaseTransaction transaction={props.transaction}*/}
-                  {/*                             setTransaction={props.setTransaction}/> : null}*/}
-                  {/*{transactionTypeSelection?.type === TransactionType.BANK_LOAN ?*/}
-                  {/*    <BankLoanTransaction transaction={props.transaction}*/}
-                  {/*                         setTransaction={props.setTransaction}/> : null}*/}
-                  {/*{transactionTypeSelection?.type === TransactionType.SERVICE_REVENUES ?*/}
-                  {/*    <ServiceRevenuesTransaction transaction={props.transaction}*/}
-                  {/*                                setTransaction={props.setTransaction}/> : null}*/}
-                  {/*{transactionTypeSelection?.type === TransactionType.PUBLIC_SERVICES_EXPENSES ?*/}
-                  {/*    <PublicServicesExpensesTransaction transaction={props.transaction}*/}
-                  {/*                                       setTransaction={props.setTransaction}/> : null}*/}
-                  {/*{transactionTypeSelection?.type === TransactionType.RENT_EXPENSES ?*/}
-                  {/*    <RentExpensesTransaction transaction={props.transaction}*/}
-                  {/*                             setTransaction={props.setTransaction}/> : null}*/}
-                  {/*{transactionTypeSelection?.type === TransactionType.WAGES_EXPENSES ?*/}
-                  {/*    <WagesExpensesTransaction transaction={props.transaction}*/}
-                  {/*                              setTransaction={props.setTransaction}/> : null}*/}
-                </section>
-              </div>
+                  </section>
+                </div>
+              </Card>
           );
         })}
       </>
