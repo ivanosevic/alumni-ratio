@@ -10,8 +10,6 @@ import java.util.*;
 
 public class GeneralLedger {
 
-
-
     @JsonIgnore
     @BsonIgnore
     private Exercise exercise;
@@ -42,9 +40,8 @@ public class GeneralLedger {
         return entriesPerAccount;
     }
 
-    public List<GeneralLedgerEntry> getEntriesPerAccount(Integer account)
-    {
-        var results = entriesPerAccount.stream().filter(generalLedgerAccount -> generalLedgerAccount.getAccount().equals(account)).toList();
+    public List<GeneralLedgerEntry> getEntriesPerAccount(Integer account) {
+        var results =  entriesPerAccount.stream().filter(generalLedgerAccount -> generalLedgerAccount.getAccount().equals(account)).toList();
         return results.stream().flatMap(generalLedgerAccount -> generalLedgerAccount.getEntries().stream()).toList();
     }
 
