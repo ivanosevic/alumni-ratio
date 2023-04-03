@@ -13,6 +13,7 @@ import com.itextpdf.layout.properties.UnitValue;
 import edu.pucmm.eict.accounts.AccountBook;
 import edu.pucmm.eict.exercises.SolvedExercise;
 import edu.pucmm.eict.journals.general.analyzer.RentExpensesEntryAnalyzer;
+import edu.pucmm.eict.journals.ledger.GeneralLedgerEntry;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -71,6 +72,13 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
                 .setFontSize(12f);
 
         var generalLedgerTable = new Table(UnitValue.createPercentArray(5)).useAllAvailableWidth();
+
+        for(var generalLedgerEntry: solvedExercise.getGeneralLedger().getEntriesPerAccount(accountType))
+        {
+
+
+        }
+
 
         generalLedgerTable.addHeaderCell(cashTableAccountTitle);
         //generalLedgerTable.addHeaderCell(generalLedgerSheetTitle);
