@@ -1,29 +1,30 @@
 package edu.pucmm.eict.transactions;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Transaction {
     private Integer id;
     private Integer paymentType;
-    private Integer day;
+    private LocalDate date;
     private BigDecimal amount;
     private BigDecimal credit;
     private BigDecimal debit;
-    private Integer transactionType;
-    private Integer transactionReference;
+    private Integer type;
+    private Integer paymentReference;
 
     public Transaction() {
     }
 
-    public Transaction(Integer id, Integer paymentType, Integer day, BigDecimal amount, BigDecimal credit, BigDecimal debit, Integer transactionType, Integer transactionReference) {
+    public Transaction(Integer id, Integer paymentType, LocalDate date, BigDecimal amount, BigDecimal credit, BigDecimal debit, Integer type, Integer paymentReference) {
         this.id = id;
         this.paymentType = paymentType;
-        this.day = day;
+        this.date = date;
         this.amount = amount;
         this.credit = credit;
         this.debit = debit;
-        this.transactionType = transactionType;
-        this.transactionReference = transactionReference;
+        this.type = type;
+        this.paymentReference = paymentReference;
     }
 
     public Integer getId() {
@@ -43,11 +44,7 @@ public class Transaction {
     }
 
     public Integer getDay() {
-        return day;
-    }
-
-    public void setDay(Integer day) {
-        this.day = day;
+        return date.getDayOfMonth();
     }
 
     public BigDecimal getAmount() {
@@ -74,20 +71,28 @@ public class Transaction {
         this.debit = debit;
     }
 
-    public Integer getTransactionType() {
-        return transactionType;
+    public Integer getType() {
+        return type;
     }
 
-    public void setTransactionType(Integer transactionType) {
-        this.transactionType = transactionType;
+    public void setType(Integer transactionType) {
+        this.type = transactionType;
     }
 
-    public Integer getTransactionReference() {
-        return transactionReference;
+    public Integer getPaymentReference() {
+        return paymentReference;
     }
 
-    public void setTransactionReference(Integer transactionReference) {
-        this.transactionReference = transactionReference;
+    public void setPaymentReference(Integer transactionReference) {
+        this.paymentReference = transactionReference;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
@@ -95,14 +100,12 @@ public class Transaction {
         return "Transaction{" +
                 "id=" + id +
                 ", paymentType=" + paymentType +
-                ", day=" + day +
+                ", date=" + date +
                 ", amount=" + amount +
                 ", credit=" + credit +
                 ", debit=" + debit +
-                ", transactionType=" + transactionType +
-                ", transactionReference=" + transactionReference +
+                ", transactionType=" + type +
+                ", transactionReference=" + paymentReference +
                 '}';
     }
-
-
 }

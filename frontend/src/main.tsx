@@ -6,7 +6,7 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.min.css";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import AccountingExerciseForm from "./exercises/AccountingExerciseForm";
-import SolvedExercisePage from "./exercises/SolvedExercisePage";
+import SolvedExercisePage from "./solutions/SolvedExercisePage";
 import {QueryClient, QueryClientProvider} from "react-query";
 
 const queryClient = new QueryClient();
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <AccountingExerciseForm/>
   },
   {
-    path: "/solved-exercise",
+    path: "/solved-exercise/:solvedExerciseId",
     element: <SolvedExercisePage/>
   }
 ]);

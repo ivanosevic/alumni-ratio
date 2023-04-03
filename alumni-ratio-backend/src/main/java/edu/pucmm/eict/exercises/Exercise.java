@@ -11,6 +11,7 @@ public class Exercise {
     private String companyName;
     private Integer monthOperations;
     private Integer yearOperations;
+    private boolean requiresAssistance;
     private List<Transaction> transactions;
 
     public Exercise() {
@@ -62,6 +63,14 @@ public class Exercise {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public boolean isRequiresAssistance() {
+        return requiresAssistance;
+    }
+
+    public void setRequiresAssistance(boolean requiresAssistance) {
+        this.requiresAssistance = requiresAssistance;
     }
 
     @Override

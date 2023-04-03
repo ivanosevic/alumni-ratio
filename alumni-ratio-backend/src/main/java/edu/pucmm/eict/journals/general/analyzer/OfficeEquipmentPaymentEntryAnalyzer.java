@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class OfficeEquipmentPaymentEntryAnalyzer implements GeneralJournalEntryAnalyzer {
     @Override
     public GeneralJournalEntry analyzeTransaction(Transaction transaction, Exercise exercise) {
-        var entryExplanation = String.format("Pago de equipos de oficina tomado a crédito del día %s", transaction.getTransactionReference());
+        var entryExplanation = String.format("Pago de equipos de oficina tomado a crédito del día %s", transaction.getPaymentReference());
         var transactionDate = LocalDate.of(exercise.getYearOperations(), exercise.getMonthOperations(), transaction.getDay());
         var entry = new GeneralJournalEntry(transactionDate, entryExplanation);
         var cashAccountName = "Efectivo";
