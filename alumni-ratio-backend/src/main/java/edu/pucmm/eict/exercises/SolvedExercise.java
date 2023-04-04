@@ -1,5 +1,6 @@
 package edu.pucmm.eict.exercises;
 
+import edu.pucmm.eict.balance.TrialBalance;
 import edu.pucmm.eict.journals.general.GeneralJournal;
 import edu.pucmm.eict.journals.ledger.GeneralLedger;
 import org.bson.BsonType;
@@ -19,6 +20,8 @@ public class SolvedExercise {
     private GeneralJournal generalJournal;
     private GeneralLedger generalLedger;
 
+    private TrialBalance trialBalance;
+
     public SolvedExercise() {
     }
 
@@ -35,6 +38,13 @@ public class SolvedExercise {
         this.exercise = exercise;
         this.generalJournal = generalJournal;
         this.generalLedger = generalLedger;
+    }
+
+    public SolvedExercise(Exercise exercise, GeneralJournal generalJournal, GeneralLedger generalLedger, TrialBalance trialBalance) {
+        this.exercise = exercise;
+        this.generalJournal = generalJournal;
+        this.generalLedger = generalLedger;
+        this.trialBalance = trialBalance;
     }
 
     public String getId() {
@@ -67,6 +77,14 @@ public class SolvedExercise {
 
     public void setExercise(Exercise exercise) {
         this.exercise = exercise;
+    }
+
+    public TrialBalance getTrialBalance() {
+        return trialBalance;
+    }
+
+    public void setTrialBalance(TrialBalance trialBalance) {
+        this.trialBalance = trialBalance;
     }
 
     @Override

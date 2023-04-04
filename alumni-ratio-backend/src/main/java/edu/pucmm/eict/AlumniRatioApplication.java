@@ -6,6 +6,8 @@ import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import edu.pucmm.eict.balance.TrialBalance;
+import edu.pucmm.eict.balance.TrialBalanceEntry;
 import edu.pucmm.eict.configuration.PluginsConfiguration;
 import edu.pucmm.eict.exercises.ExerciseController;
 import edu.pucmm.eict.exercises.SolvedExercise;
@@ -53,11 +55,21 @@ public class AlumniRatioApplication {
                 conventions(List.of(Conventions.ANNOTATION_CONVENTION, Conventions.OBJECT_ID_GENERATORS))
                 .build();
 
+        var trialBalanceClassModel = ClassModel.builder(TrialBalance.class).
+                conventions(List.of(Conventions.ANNOTATION_CONVENTION, Conventions.OBJECT_ID_GENERATORS))
+                .build();
+
+        var trialBalanceEntryClassModel = ClassModel.builder(TrialBalanceEntry.class).
+                conventions(List.of(Conventions.ANNOTATION_CONVENTION, Conventions.OBJECT_ID_GENERATORS))
+                .build();
+
         var pojoCodecProvider = PojoCodecProvider.builder()
-                .register("edu.pucmm.eict.exercises", "edu.pucmm.eict.transactions", "edu.pucmm.eict.journals.ledger", "edu.pucmm.eict.journals.general")
-                .register(generalLedgerClassModel, generalJournalClassModel, solvedExerciseClassModel)
+                .register("edu.pucmm.eict.exercises", "edu.pucmm.eict.transactions", "edu.pucmm.eict.journals.ledger", "edu.pucmm.eict.journals.general", "edu.pucmm.eict.journals.balance")
+                .register(generalLedgerClassModel, generalJournalClassModel, solvedExerciseClassModel, trialBalanceClassModel, trialBalanceEntryClassModel)
                 .conventions(Conventions.DEFAULT_CONVENTIONS)
                 .build();
+
+
 
         var pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
 

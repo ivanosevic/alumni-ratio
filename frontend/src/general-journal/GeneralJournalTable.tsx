@@ -82,7 +82,7 @@ function GeneralJournalTable(props: GeneralJournalTableProps) {
           </tbody>
         </table>
       </section>
-  )
+  );
 }
 
 

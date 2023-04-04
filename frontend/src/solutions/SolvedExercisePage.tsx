@@ -7,6 +7,7 @@ import {TabMenu} from "primereact/tabmenu";
 import GeneralJournalTable from "../general-journal/GeneralJournalTable";
 import GeneralLedgerTableList from "../general-ledger/GeneralLedgerTableList";
 import ShareSolvedExercise from "../share/ShareSolvedExercise";
+import TrialBalanceTable from "../trial-balance/TrialBalanceTable";
 
 function SolvedExercisePage() {
   const {solvedExerciseId} = useParams();
@@ -47,15 +48,15 @@ function SolvedExercisePage() {
         <TabMenu model={items} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}/>
 
         {activeIndex === 0 ?
-            <GeneralJournalTable data={data?.generalJournal} /> : null}
+            <GeneralJournalTable data={data?.generalJournal}/> : null}
 
         {activeIndex === 1 ?
-            <GeneralLedgerTableList generalLedger={data?.generalLedger} /> : null}
+            <GeneralLedgerTableList generalLedger={data?.generalLedger}/> : null}
 
         {activeIndex === 2 ?
-            <p>Aqui se presenta la balanza de comprobacion</p> : null}
+            <TrialBalanceTable trialBalance={data?.trialBalance}/> : null}
 
-        {activeIndex === 3 ? <ShareSolvedExercise solvedExercise={data} /> : null}
+        {activeIndex === 3 ? <ShareSolvedExercise solvedExercise={data}/> : null}
       </div>
   );
 }

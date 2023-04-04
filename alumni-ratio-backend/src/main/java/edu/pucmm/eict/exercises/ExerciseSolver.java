@@ -1,5 +1,6 @@
 package edu.pucmm.eict.exercises;
 
+import edu.pucmm.eict.balance.TrialBalance;
 import edu.pucmm.eict.journals.general.GeneralJournal;
 import edu.pucmm.eict.journals.ledger.GeneralLedger;
 
@@ -15,6 +16,8 @@ public class ExerciseSolver {
         exercise.getTransactions().forEach(generalJournal::addTransactionAsEntry);
         var generalLedger = new GeneralLedger(exercise);
         generalLedger.carryOverFromGeneralJournal(generalJournal);
-        return new SolvedExercise(exercise, generalJournal, generalLedger);
+        var trialBalance = new TrialBalance();
+        trialBalance.fillFromGeneralLedger(generalLedger);
+        return new SolvedExercise(exercise, generalJournal, generalLedger, trialBalance);
     }
 }

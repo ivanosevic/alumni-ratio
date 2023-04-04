@@ -1,6 +1,8 @@
 package edu.pucmm.eict.balance;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import edu.pucmm.eict.accounts.AccountBook;
+import edu.pucmm.eict.journals.ledger.GeneralLedger;
 import org.bson.types.ObjectId;
 
 import java.math.BigDecimal;
@@ -34,6 +36,22 @@ public class TrialBalance {
             total = total.add(entry.getCredit());
         }
         return total;
+    }
+
+    public void fillFromGeneralLedger(GeneralLedger generalLedger) {
+        var entries = new ArrayList<TrialBalanceEntry>();
+        generalLedger.getEntriesPerAccount().forEach(generalLedgerAccount -> {
+            if (!generalLedgerAccount.getEntries().isEmpty()) {
+                TrialBalanceEntry trialBalance;
+                if (generalLedgerAccount.isContraAccount()) {
+                    trialBalance = new TrialBalanceEntry(AccountBook.getAccountName(generalLedgerAccount.getAccount()), BigDecimal.ZERO, generalLedgerAccount.getFinalBalance());
+                } else {
+                    trialBalance = new TrialBalanceEntry(AccountBook.getAccountName(generalLedgerAccount.getAccount()), generalLedgerAccount.getFinalBalance(), BigDecimal.ZERO);
+                }
+                entries.add(trialBalance);
+            }
+        });
+        this.entries.addAll(entries);
     }
 
     public String getId() {
