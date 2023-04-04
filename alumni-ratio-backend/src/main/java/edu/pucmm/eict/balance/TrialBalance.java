@@ -1,6 +1,7 @@
 package edu.pucmm.eict.balance;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.itextpdf.layout.element.Table;
 import edu.pucmm.eict.accounts.AccountBook;
 import edu.pucmm.eict.journals.ledger.GeneralLedger;
 import org.bson.types.ObjectId;
@@ -62,7 +63,7 @@ public class TrialBalance {
         this.id = id;
     }
 
-    public List<TrialBalanceEntry> getEntries() {
+    public List<TrialBalanceEntry> getEntries(Table trialBalanceTable) {
         return entries;
     }
 
