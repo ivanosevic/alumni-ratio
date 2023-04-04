@@ -26,7 +26,8 @@ function DateFieldRow(props: DateFieldRowProps) {
 }
 
 interface GeneralJournalTableProps {
-  data: GeneralJournal | undefined
+  data: GeneralJournal | undefined;
+  companyName: string | undefined;
 }
 
 function GeneralJournalTable(props: GeneralJournalTableProps) {
@@ -46,6 +47,12 @@ function GeneralJournalTable(props: GeneralJournalTableProps) {
       <section className="p-datatable p-component p-datatable-striped">
         <table>
           <thead className="p-datatable-thead">
+          <tr>
+            <th className="text-center" colSpan={columns.length}>{props.companyName}</th>
+          </tr>
+          <tr>
+            <th className="text-center" colSpan={columns.length}>Diario General</th>
+          </tr>
           <tr>
             <th>Fecha</th>
             <th>Detalle</th>

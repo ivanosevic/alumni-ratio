@@ -13,6 +13,7 @@ import RentExpensesTransaction from "./types/RentExpensesTransaction";
 import WagesExpensesTransaction from "./types/WagesExpensesTransaction";
 import {InputNumberValueChangeEvent} from "primereact/inputnumber";
 import {PaymentTypeSelection} from "./common/PaymentTypeDropdown";
+import {Button} from "primereact/button";
 
 /**
  * This class is used when selecting the nature of the transaction on a dropdown.
@@ -28,6 +29,7 @@ interface TransactionComponentProps {
   transactions: Transaction[];
   setTransactions: React.Dispatch<React.SetStateAction<Transaction[]>>;
 }
+
 
 export default function TransactionComponent(props: TransactionComponentProps) {
   const transactionTypeSelections: TransactionTypeSelection[] = [
@@ -118,11 +120,17 @@ export default function TransactionComponent(props: TransactionComponentProps) {
     });
   };
 
+  const deleteTransactionsOnClick = (index: number) => {
+    props.setTransactions(prevState => {
+      return prevState.filter((_, i) => i !== index);
+    });
+  }
+
   return (
       <>
         {props.transactions.map((t, index) => {
           return (
-              <Card title={'Transacción ' + (index + 1)} className="mb-3" key={index}>
+              <Card title={'Transacción ' + (index+1)} className="mb-3" key={index}>
                 <div className="formgrid grid">
                   <section className="col-12">
                     <div className="field">
@@ -185,6 +193,9 @@ export default function TransactionComponent(props: TransactionComponentProps) {
                     {t.type === TransactionType.WAGES_EXPENSES ?
                         <WagesExpensesTransaction transaction={t}
                                                   onValueChange={(e: InputNumberValueChangeEvent) => changeTransactionValueProperty(e, index)}/> : null}
+                  </section>
+                  <section className="flex w-full justify-content-end">
+                    <Button severity="danger" icon="pi pi-trash" onClick={() => deleteTransactionsOnClick(index)}/>
                   </section>
                 </div>
               </Card>

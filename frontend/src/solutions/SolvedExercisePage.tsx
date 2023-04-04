@@ -25,6 +25,8 @@ function SolvedExercisePage() {
     {label: 'Compartir Ejercicio', icon: 'pi pi-share-alt'}
   ];
 
+  console.log(data);
+
   if (isLoading) {
     return (
         <section className="flex flex-wrap justify-content-center">
@@ -48,13 +50,13 @@ function SolvedExercisePage() {
         <TabMenu model={items} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}/>
 
         {activeIndex === 0 ?
-            <GeneralJournalTable data={data?.generalJournal}/> : null}
+            <GeneralJournalTable data={data?.generalJournal} companyName={data?.exercise.companyName}/> : null}
 
         {activeIndex === 1 ?
             <GeneralLedgerTableList generalLedger={data?.generalLedger}/> : null}
 
         {activeIndex === 2 ?
-            <TrialBalanceTable trialBalance={data?.trialBalance}/> : null}
+            <TrialBalanceTable companyName={data?.exercise.companyName} trialBalance={data?.trialBalance}/> : null}
 
         {activeIndex === 3 ? <ShareSolvedExercise solvedExercise={data}/> : null}
       </div>
