@@ -5,7 +5,8 @@ COPY pom.xml .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.2-slim
-EXPOSE 7000
+EXPOSE ${APP_PORT}
+EXPOSE ${MONGODB_URL}
 
 RUN mkdir /app
 COPY --from=build /usr/src/app/target/alumniratiobackend-1-shaded.jar /app/app.jar

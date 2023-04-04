@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.1'
+}
+
+group 'edu.pucmm.eict'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+application {
+    mainClassName('edu.pucmm.eict.alumniratio.frontend.AlumniRatioFrontendApplication')
+}
+
+dependencies {
+    implementation 'io.javalin:javalin:5.4.2'
+    implementation 'io.javalin:javalin-rendering:5.4.2'
+    implementation "org.thymeleaf:thymeleaf:3.1.1.RELEASE"
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
