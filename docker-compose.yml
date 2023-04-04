@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  alumni-ratio-api:
+    container_name: alumni-ratio-backend
+    image: alumni-ratio-backend:1.0
+    environment:
+      - APP_PORT=7000
+      - MONGODB_URL="mongodb+srv://alumni-ratio-admin:SzQJ4Ay4ycogvtsk@cluster0.g9uka2r.mongodb.net/?retryWrites=true&w=majority"
+    ports:
+      - "7000:7000"
+    networks:
+      - alumni-ratio
+
+  alumni-ratio-frontend:
+    container_name: alumni-ratio-frontend
+    image: alumni-ratio-frontend:1.0
+    environment:
+      - APP_PORT=8080
+    ports:
+     - "8080:8080"
+
+networks:
+  alumni-ratio:
