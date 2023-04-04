@@ -4,14 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.pucmm.eict.accounts.AccountBook;
 import edu.pucmm.eict.exercises.Exercise;
 import edu.pucmm.eict.journals.general.GeneralJournal;
-import org.bson.codecs.pojo.annotations.BsonIgnore;
 
-import java.util.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class GeneralLedger {
 
     @JsonIgnore
-    @BsonIgnore
     private Exercise exercise;
 
     private List<GeneralLedgerAccount> entriesPerAccount;
@@ -27,8 +28,20 @@ public class GeneralLedger {
     public void carryOverFromGeneralJournal(GeneralJournal generalJournal) {
         AccountBook.ALL_ACCOUNTS.forEach(accountNumber -> {
             var generalJournalRowsByAccount = generalJournal.getRowsByAccountReference(accountNumber);
-            var generalLedgerEntries = generalJournalRowsByAccount.stream().map(row -> new GeneralLedgerEntry(row.getDate(), row.getReference(), row.getDebit(), row.getCredit())).toList();
-            entriesPerAccount.add(new GeneralLedgerAccount(accountNumber, generalLedgerEntries));
+            var generalLedgerEntries = new ArrayList<GeneralLedgerEntry>();
+            BigDecimal balance = BigDecimal.ZERO;
+            for (var row : generalJournalRowsByAccount) {
+                BigDecimal credit = row.getCredit();
+                BigDecimal debit = row.getDebit();
+                if (AccountBook.isContraAccount(accountNumber)) {
+                    balance = balance.add(credit.subtract(debit));
+                } else {
+                    balance = balance.add(debit.subtract(credit));
+                }
+                var newEntry = new GeneralLedgerEntry(row.getDate(), row.getReference(), row.getDebit(), row.getCredit(), balance);
+                generalLedgerEntries.add(newEntry);
+            }
+            entriesPerAccount.add(new GeneralLedgerAccount(accountNumber, AccountBook.isContraAccount(accountNumber), balance, generalLedgerEntries));
         });
     }
 
@@ -41,8 +54,16 @@ public class GeneralLedger {
     }
 
     public List<GeneralLedgerEntry> getEntriesPerAccount(Integer account) {
-        var results =  entriesPerAccount.stream().filter(generalLedgerAccount -> generalLedgerAccount.getAccount().equals(account)).toList();
+        var results = entriesPerAccount.stream().filter(generalLedgerAccount -> generalLedgerAccount.getAccount().equals(account)).toList();
         return results.stream().flatMap(generalLedgerAccount -> generalLedgerAccount.getEntries().stream()).toList();
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setEntriesPerAccount(List<GeneralLedgerAccount> entriesPerAccount) {
+        this.entriesPerAccount = entriesPerAccount;
     }
 
     @Override

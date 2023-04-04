@@ -6,10 +6,10 @@ import {Dropdown, DropdownChangeEvent} from "primereact/dropdown";
 interface PaymentTypeProps {
     label?: string;
     transaction: Transaction;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
+    onPaymentTypeChange: (e: PaymentTypeSelection) => void;
 }
 
-class PaymentTypeSelection {
+export class PaymentTypeSelection {
     type?: PaymentType;
     label?: string;
 }
@@ -34,12 +34,7 @@ export default function PaymentTypeDropdown(props: PaymentTypeProps) {
     const onDropdownChangeEvent = (e: DropdownChangeEvent) => {
         const eventSelection : PaymentTypeSelection = e.value;
         setPaymentType(eventSelection);
-        props.setTransaction(prevState => {
-            return {
-                ...prevState,
-                paymentType: eventSelection.type
-            }
-        });
+        props.onPaymentTypeChange(eventSelection);
     };
 
     return (

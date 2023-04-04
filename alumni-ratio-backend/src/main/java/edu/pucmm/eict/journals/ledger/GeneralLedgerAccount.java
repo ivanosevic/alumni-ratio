@@ -1,19 +1,31 @@
 package edu.pucmm.eict.journals.ledger;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
 public class GeneralLedgerAccount implements Serializable {
 
     private Integer account;
+    private boolean contraAccount;
+    private BigDecimal finalBalance;
     private List<GeneralLedgerEntry> entries;
 
     public GeneralLedgerAccount() {
+        this.contraAccount = false;
     }
 
-    public GeneralLedgerAccount(Integer account, List<GeneralLedgerEntry> entries) {
+    public GeneralLedgerAccount(Integer account, boolean contraAccount, List<GeneralLedgerEntry> entries) {
         this.account = account;
+        this.contraAccount = contraAccount;
+        this.entries = entries;
+    }
+
+    public GeneralLedgerAccount(Integer account, boolean contraAccount, BigDecimal finalBalance, List<GeneralLedgerEntry> entries) {
+        this.account = account;
+        this.contraAccount = contraAccount;
+        this.finalBalance = finalBalance;
         this.entries = entries;
     }
 
@@ -33,24 +45,32 @@ public class GeneralLedgerAccount implements Serializable {
         this.entries = entries;
     }
 
+    public boolean isContraAccount() {
+        return contraAccount;
+    }
+
+    public void setContraAccount(boolean contraAccount) {
+        this.contraAccount = contraAccount;
+    }
+
+    public BigDecimal getFinalBalance() {
+        return finalBalance;
+    }
+
+    public void setFinalBalance(BigDecimal finalBalance) {
+        this.finalBalance = finalBalance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GeneralLedgerAccount that = (GeneralLedgerAccount) o;
-        return Objects.equals(account, that.account);
+        return contraAccount == that.contraAccount && Objects.equals(account, that.account) && Objects.equals(finalBalance, that.finalBalance) && Objects.equals(entries, that.entries);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(account);
-    }
-
-    @Override
-    public String toString() {
-        return "GeneralLedgerAccount{" +
-                "account=" + account +
-                ", entries=" + entries +
-                '}';
+        return Objects.hash(account, contraAccount, finalBalance, entries);
     }
 }
