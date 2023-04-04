@@ -49,18 +49,6 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-       /* var trialBalanceSheetTitle = new Cell(0, 1)
-                .add(new Paragraph("Hoja 1").setTextAlignment(TextAlignment.CENTER))
-                .setFont(helveticaFont)
-                .setFontColor(ColorConstants.BLACK)
-                .setFontSize(12f);*/
-
-        var accountNumberHeaderCell = new Cell(2,0)
-                .add(new Paragraph("No. de Cuenta").setTextAlignment(TextAlignment.CENTER))
-                .setFont(helveticaFont)
-                .setFontColor(ColorConstants.BLACK)
-                .setFontSize(12f);
-
         var detailHeaderCell = new Cell(2,2)
                 .add(new Paragraph("Concepto").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
@@ -86,8 +74,6 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
                 .setFontSize(12f);
 
         trialBalanceTable.addHeaderCell(trialBalanceTitle);
-        //trialBalanceTable.addHeaderCell(trialBalanceSheetTitle);
-        trialBalanceTable.addHeaderCell(accountNumberHeaderCell);
         trialBalanceTable.addHeaderCell(detailHeaderCell);
         trialBalanceTable.addHeaderCell(countableBalanceHeaderCell);
         trialBalanceTable.addHeaderCell(debitHeaderCell);
