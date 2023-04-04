@@ -3,11 +3,19 @@ services:
   alumni-ratio-api:
     container_name: alumni-ratio-api
     image: ivanosevic/alumni-ratio-api:1.0
+    environment:
+      - APP_PORT=7000
     ports:
       - "7000:7000"
     networks:
       - alumni-ratio-backend
 
+  alumni-ratio-frontend:
+    container_name: alumni-ratio-frontend
+    image: ivanosevic/alumni-ratio-frontend:1.0
+    environment:
+      - APP_PORT=7000
+      - ENVIRONMENT_VARIABLE
 
 networks:
   alumni-ratio-backend:
