@@ -94,13 +94,13 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
                     .setFontSize(12f);
 
             var debitCell = new Cell()
-                    .add(new Paragraph(String.valueOf(trialBalanceEntry.getDebit())).setTextAlignment(TextAlignment.CENTER))
+                    .add(new Paragraph(moneyFormatter.format(trialBalanceEntry.getDebit())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(helveticaFont)
                     .setFontColor(ColorConstants.BLACK)
                     .setFontSize(12f);
 
             var creditCell = new Cell()
-                    .add(new Paragraph(String.valueOf(trialBalanceEntry.getCredit())).setTextAlignment(TextAlignment.CENTER))
+                    .add(new Paragraph(moneyFormatter.format(trialBalanceEntry.getCredit())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(helveticaFont)
                     .setFontColor(ColorConstants.BLACK)
                     .setFontSize(12f);
@@ -109,6 +109,8 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
             trialBalanceTable.addCell(debitCell);
             trialBalanceTable.addCell(creditCell);
         }
+
+        trialBalanceTable.setMarginBottom(30f);
 
         document.add(trialBalanceTable);
     }

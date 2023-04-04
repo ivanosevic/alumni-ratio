@@ -109,8 +109,8 @@ public class GeneralJournalSection extends SolvedExercisePDFSection {
         var moneyFormatter = new DecimalFormat("#,##0.00");
         moneyFormatter.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
 
-        for(var generalJournalEntry : solvedExercise.getGeneralJournal().getGeneralJournalEntries()) {
-            for(var generalJournalRow : generalJournalEntry.getGeneralJournalRows()) {
+        for (var generalJournalEntry : solvedExercise.getGeneralJournal().getGeneralJournalEntries()) {
+            for (var generalJournalRow : generalJournalEntry.getGeneralJournalRows()) {
                 var dateDataCell = new Cell()
                         .add(new Paragraph(generalJournalRow.getDate().toString()).setTextAlignment(TextAlignment.CENTER))
                         .setFont(helveticaFont)
@@ -148,6 +148,8 @@ public class GeneralJournalSection extends SolvedExercisePDFSection {
                 generalJournalTable.addCell(creditDataCell);
             }
         }
+
+        generalJournalTable.setMarginBottom(30f);
 
         document.add(generalJournalTable);
 

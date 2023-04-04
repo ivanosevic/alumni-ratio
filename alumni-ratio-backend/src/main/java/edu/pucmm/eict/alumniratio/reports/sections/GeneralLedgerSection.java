@@ -23,7 +23,6 @@ import java.util.Locale;
 public class GeneralLedgerSection extends SolvedExercisePDFSection {
 
 
-
     public GeneralLedgerSection(PdfDocument pdfDocument, SolvedExercise solvedExercise, Document document) {
         super(pdfDocument, solvedExercise, document);
     }
@@ -77,8 +76,7 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
         var moneyFormatter = new DecimalFormat("#,##0.00");
         moneyFormatter.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
 
-        for(var generalLedgerEntry: solvedExercise.getGeneralLedger().getEntriesPerAccount(accountType))
-        {
+        for (var generalLedgerEntry : solvedExercise.getGeneralLedger().getEntriesPerAccount(accountType)) {
             var dateCell = new Cell()
                     .add(new Paragraph(generalLedgerEntry.getDate().toString()).setTextAlignment(TextAlignment.CENTER))
                     .setFont(font)
@@ -92,13 +90,13 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
                     .setFontSize(12f);
 
             var debitCell = new Cell()
-                    .add(new Paragraph(String.valueOf(generalLedgerEntry.getDebit())).setTextAlignment(TextAlignment.CENTER))
+                    .add(new Paragraph(moneyFormatter.format(generalLedgerEntry.getDebit())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(font)
                     .setFontColor(ColorConstants.BLACK)
                     .setFontSize(12f);
 
             var creditCell = new Cell()
-                    .add(new Paragraph(String.valueOf(generalLedgerEntry.getCredit())).setTextAlignment(TextAlignment.CENTER))
+                    .add(new Paragraph(moneyFormatter.format(generalLedgerEntry.getCredit())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(font)
                     .setFontColor(ColorConstants.BLACK)
                     .setFontSize(12f);
@@ -116,6 +114,8 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
             generalLedgerTable.addCell(countableBalanceCell);
 
         }
+
+        generalLedgerTable.setMarginBottom(30f);
 
         return generalLedgerTable;
     }
@@ -136,7 +136,6 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
         lineSeparator.setMarginTop(5.0f);
         var mainHeaderParagraph = new Paragraph(mainHeaderText).add(lineSeparator);
         document.add(mainHeaderParagraph);
-
 
         var cashTable = buildGeneralLedgerTable("Efectivo", helveticaFont, AccountBook.CASH);
         var officeSuppliesTable = buildGeneralLedgerTable("Materiales de Oficina", helveticaFont, AccountBook.OFFICE_SUPPLIES);
