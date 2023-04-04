@@ -10,8 +10,8 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
-import edu.pucmm.eict.balance.TrialBalanceEntry;
-import edu.pucmm.eict.exercises.SolvedExercise;
+import edu.pucmm.eict.alumniratio.exercises.SolvedExercise;
+import edu.pucmm.eict.alumniratio.reports.sections.SolvedExercisePDFSection;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -24,14 +24,12 @@ import static com.itextpdf.io.font.constants.StandardFonts.HELVETICA_BOLD;
 
 public class TrialBalanceSection extends SolvedExercisePDFSection {
 
-    public TrialBalanceSection(PdfDocument pdfDocument, SolvedExercise solvedExercise, Document document)
-    {
+    public TrialBalanceSection(PdfDocument pdfDocument, SolvedExercise solvedExercise, Document document) {
         super(pdfDocument, solvedExercise, document);
     }
 
     @Override
-    public void sectionBody() throws IOException
-    {
+    public void sectionBody() throws IOException {
         var helveticaFont = PdfFontFactory.createFont(HELVETICA);
         var mainHeaderText = new Text("Balanza de Comprobación")
                 .setFontColor(ColorConstants.BLACK)
@@ -55,25 +53,25 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var detailHeaderCell = new Cell(2,3)
+        var detailHeaderCell = new Cell(2, 3)
                 .add(new Paragraph("Concepto").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var countableBalanceHeaderCell = new Cell(0,2)
+        var countableBalanceHeaderCell = new Cell(0, 2)
                 .add(new Paragraph("Saldos").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var debitHeaderCell = new Cell(0,1)
+        var debitHeaderCell = new Cell(0, 1)
                 .add(new Paragraph("Deudor").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
 
-        var creditHeaderCell = new Cell(0,1)
+        var creditHeaderCell = new Cell(0, 1)
                 .add(new Paragraph("Acreedor").setTextAlignment(TextAlignment.CENTER))
                 .setFont(helveticaFont)
                 .setFontColor(ColorConstants.BLACK)
@@ -88,10 +86,8 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
         var moneyFormatter = new DecimalFormat();
         moneyFormatter.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
 
-        for(var trialBalanceEntry: solvedExercise.getTrialBalance().getEntries(trialBalanceTable))
-        {
-
-            var detailCell = new Cell(1,3)
+        for (var trialBalanceEntry : solvedExercise.getTrialBalance().getEntries()) {
+            var detailCell = new Cell(1, 3)
                     .add(new Paragraph(String.valueOf(trialBalanceEntry.getAccountName())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(helveticaFont)
                     .setFontColor(ColorConstants.BLACK)
@@ -112,9 +108,7 @@ public class TrialBalanceSection extends SolvedExercisePDFSection {
             trialBalanceTable.addCell(detailCell);
             trialBalanceTable.addCell(debitCell);
             trialBalanceTable.addCell(creditCell);
-
-            }
-
+        }
 
         document.add(trialBalanceTable);
     }

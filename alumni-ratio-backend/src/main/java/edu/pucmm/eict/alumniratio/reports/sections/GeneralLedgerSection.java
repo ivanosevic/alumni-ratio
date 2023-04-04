@@ -10,8 +10,9 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
-import edu.pucmm.eict.accounts.AccountBook;
-import edu.pucmm.eict.exercises.SolvedExercise;
+import edu.pucmm.eict.alumniratio.accounts.AccountBook;
+import edu.pucmm.eict.alumniratio.exercises.SolvedExercise;
+import edu.pucmm.eict.alumniratio.reports.sections.SolvedExercisePDFSection;
 
 import java.io.IOException;
 import java.text.DecimalFormat;

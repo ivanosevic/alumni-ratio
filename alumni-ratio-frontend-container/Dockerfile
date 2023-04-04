@@ -6,5 +6,5 @@ RUN gradle shadowJar --no-daemon
 FROM openjdk:17.0.2-slim
 EXPOSE ${APP_PORT}
 RUN mkdir /app
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/mi-app-multi-stage.jar
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/mi-app-multi-stage.jar"]
+COPY --from=build /home/gradle/src/build/libs/*.jar /app/app.jar
+ENTRYPOINT ["java", "-jar","/app/app.jar"]
