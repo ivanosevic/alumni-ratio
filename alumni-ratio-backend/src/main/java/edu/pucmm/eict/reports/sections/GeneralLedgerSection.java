@@ -12,13 +12,9 @@ import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import edu.pucmm.eict.accounts.AccountBook;
 import edu.pucmm.eict.exercises.SolvedExercise;
-import edu.pucmm.eict.journals.general.analyzer.RentExpensesEntryAnalyzer;
-import edu.pucmm.eict.journals.ledger.GeneralLedgerEntry;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
+
 
 public class GeneralLedgerSection extends SolvedExercisePDFSection {
 
@@ -34,12 +30,6 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
                 .setFont(font)
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(12f);
-
-        /*var generalLedgerSheetTitle = new Cell(0, 1)
-                .add(new Paragraph("Hoja 1").setTextAlignment(TextAlignment.CENTER))
-                .setFont(font)
-                .setFontColor(ColorConstants.BLACK)
-                .setFontSize(12f);*/
 
         var dateHeaderCell = new Cell()
                 .add(new Paragraph("Fecha").setTextAlignment(TextAlignment.CENTER))
@@ -73,20 +63,46 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
 
         var generalLedgerTable = new Table(UnitValue.createPercentArray(5)).useAllAvailableWidth();
 
-        for(var generalLedgerEntry: solvedExercise.getGeneralLedger().getEntriesPerAccount(accountType))
-        {
-
-
-        }
-
-
         generalLedgerTable.addHeaderCell(cashTableAccountTitle);
-        //generalLedgerTable.addHeaderCell(generalLedgerSheetTitle);
         generalLedgerTable.addHeaderCell(dateHeaderCell);
         generalLedgerTable.addHeaderCell(detailHeaderCell);
         generalLedgerTable.addHeaderCell(debitHeaderCell);
         generalLedgerTable.addHeaderCell(creditHeaderCell);
         generalLedgerTable.addHeaderCell(countableBalanceHeaderCell);
+
+        for(var generalLedgerEntry: solvedExercise.getGeneralLedger().getEntriesPerAccount(accountType))
+        {
+            var dateCell = new Cell()
+                    .add(new Paragraph(generalLedgerEntry.getDate().toString()).setTextAlignment(TextAlignment.CENTER))
+                    .setFont(font)
+                    .setFontColor(ColorConstants.BLACK)
+                    .setFontSize(10f);
+
+            var detailCell = new Cell()
+                    .add(new Paragraph(String.valueOf(generalLedgerEntry.getReference())).setTextAlignment(TextAlignment.CENTER))
+                    .setFont(font)
+                    .setFontColor(ColorConstants.BLACK)
+                    .setFontSize(10f);
+
+            var debitCell = new Cell()
+                    .add(new Paragraph(String.valueOf(generalLedgerEntry.getDebit())).setTextAlignment(TextAlignment.CENTER))
+                    .setFont(font)
+                    .setFontColor(ColorConstants.BLACK)
+                    .setFontSize(10f);
+
+            var creditCell = new Cell()
+                    .add(new Paragraph(String.valueOf(generalLedgerEntry.getCredit())).setTextAlignment(TextAlignment.CENTER))
+                    .setFont(font)
+                    .setFontColor(ColorConstants.BLACK)
+                    .setFontSize(10f);
+
+            generalLedgerTable.addCell(dateCell);
+            generalLedgerTable.addCell(detailCell);
+            generalLedgerTable.addCell(debitCell);
+            generalLedgerTable.addCell(creditCell);
+
+        }
+
         return generalLedgerTable;
     }
 
