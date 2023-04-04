@@ -13,5 +13,5 @@ COPY --from=build /usr/src/app/target/alumniratiobackend-1-shaded.jar /app/app.j
 ENTRYPOINT ["java", "-jar","/app/app.jar"]
 
 LABEL com.alumni-ratio.version="1.0"
-LABEL com.alumni-ratio.name="Alumni Ratio Backend"
-LABEL com.alumni-ratio.description="Backend API for Alumni Ratio application"
+LABEL com.alumni-ratio.name="Alumni Ratio Application"
+LABEL com.alumni-ratio.description="Fullstack Application for Alumni Ratio"

@@ -47,6 +47,16 @@
             <version>${javalin.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin-rendering</artifactId>
+            <version>${javalin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>3.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>2.0.6</version>
@@ -132,7 +142,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>edu.pucmm.eict.AlumniRatioApplication</mainClass>
+                                    <mainClass>edu.pucmm.eict.alumniratio.AlumniRatioApplication</mainClass>
                                 </transformer>
                             </transformers>
                             <filters>
