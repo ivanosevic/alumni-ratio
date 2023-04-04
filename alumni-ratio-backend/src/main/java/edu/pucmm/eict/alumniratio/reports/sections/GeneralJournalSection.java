@@ -115,13 +115,13 @@ public class GeneralJournalSection extends SolvedExercisePDFSection {
                         .add(new Paragraph(generalJournalRow.getDate().toString()).setTextAlignment(TextAlignment.CENTER))
                         .setFont(helveticaFont)
                         .setFontColor(ColorConstants.BLACK)
-                        .setFontSize(10f);
+                        .setFontSize(12f);
 
                 var detailDataCell = new Cell()
                         .add(new Paragraph(generalJournalRow.getDetail()).setTextAlignment(TextAlignment.CENTER))
                         .setFont(helveticaFont)
                         .setFontColor(ColorConstants.BLACK)
-                        .setFontSize(10f);
+                        .setFontSize(12f);
 
                 var referenceDataCell = new Cell()
                         .add(new Paragraph(generalJournalRow.getReference().toString()).setTextAlignment(TextAlignment.CENTER))

@@ -10,6 +10,7 @@ import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.UnitValue;
 import edu.pucmm.eict.alumniratio.exercises.SolvedExercise;
 
+import javax.swing.text.StyledEditorKit;
 import java.io.IOException;
 
 public class GeneralInformationSection extends SolvedExercisePDFSection {
@@ -20,7 +21,7 @@ public class GeneralInformationSection extends SolvedExercisePDFSection {
 
     @Override
     public void sectionBody() throws IOException {
-        var helveticaFont = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+        var helveticaFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
         var mainHeaderText = new Text("Informaciones generales sobre la empresa")
                 .setFontColor(ColorConstants.BLACK)
                 .setFontSize(14.0f)
