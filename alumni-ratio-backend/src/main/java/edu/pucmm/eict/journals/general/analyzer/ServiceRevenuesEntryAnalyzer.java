@@ -45,9 +45,9 @@ public class ServiceRevenuesEntryAnalyzer implements PaymentTypeEntryAnalyzer {
         var customersAccountName = "Clientes";
         var revenueAccountName = "Ingresos por servicios.";
         var amount = transaction.getCredit().add(transaction.getDebit());
-        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.CASH, cashAccountName, amount, BigDecimal.ZERO));
+        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.CASH, cashAccountName, transaction.getDebit(), BigDecimal.ZERO));
         entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.CUSTOMERS, customersAccountName, transaction.getCredit(), BigDecimal.ZERO));
-        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.SERVICES_REVENUES, revenueAccountName, BigDecimal.ZERO, transaction.getAmount()));
+        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.SERVICES_REVENUES, revenueAccountName, BigDecimal.ZERO, amount));
         return entry;
     }
 }
