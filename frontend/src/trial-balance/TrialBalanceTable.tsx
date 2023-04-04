@@ -2,6 +2,7 @@ import {TrialBalance} from "../exercises/models/solved-exercise.model";
 
 interface TrialBalanceTableProps {
   trialBalance: TrialBalance | undefined;
+  companyName: string | undefined;
 }
 
 function TrialBalanceTable(props: TrialBalanceTableProps) {
@@ -13,6 +14,12 @@ function TrialBalanceTable(props: TrialBalanceTableProps) {
       <section className="p-datatable p-component p-datatable-striped">
         <table>
           <thead className="p-datatable-thead">
+          <tr>
+            <th className="text-center" colSpan={3}>{props.companyName}</th>
+          </tr>
+          <tr>
+            <th className="text-center" colSpan={3}>Balanza de comprobación</th>
+          </tr>
           <tr>
             <th>Cuenta</th>
             <th>Débito</th>
