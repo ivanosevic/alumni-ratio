@@ -14,6 +14,9 @@ import edu.pucmm.eict.accounts.AccountBook;
 import edu.pucmm.eict.exercises.SolvedExercise;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 
 public class GeneralLedgerSection extends SolvedExercisePDFSection {
@@ -70,36 +73,46 @@ public class GeneralLedgerSection extends SolvedExercisePDFSection {
         generalLedgerTable.addHeaderCell(creditHeaderCell);
         generalLedgerTable.addHeaderCell(countableBalanceHeaderCell);
 
+        var moneyFormatter = new DecimalFormat("#,##0.00");
+        moneyFormatter.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+
         for(var generalLedgerEntry: solvedExercise.getGeneralLedger().getEntriesPerAccount(accountType))
         {
             var dateCell = new Cell()
                     .add(new Paragraph(generalLedgerEntry.getDate().toString()).setTextAlignment(TextAlignment.CENTER))
                     .setFont(font)
                     .setFontColor(ColorConstants.BLACK)
-                    .setFontSize(10f);
+                    .setFontSize(12f);
 
             var detailCell = new Cell()
                     .add(new Paragraph(String.valueOf(generalLedgerEntry.getReference())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(font)
                     .setFontColor(ColorConstants.BLACK)
-                    .setFontSize(10f);
+                    .setFontSize(12f);
 
             var debitCell = new Cell()
                     .add(new Paragraph(String.valueOf(generalLedgerEntry.getDebit())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(font)
                     .setFontColor(ColorConstants.BLACK)
-                    .setFontSize(10f);
+                    .setFontSize(12f);
 
             var creditCell = new Cell()
                     .add(new Paragraph(String.valueOf(generalLedgerEntry.getCredit())).setTextAlignment(TextAlignment.CENTER))
                     .setFont(font)
                     .setFontColor(ColorConstants.BLACK)
-                    .setFontSize(10f);
+                    .setFontSize(12f);
+
+            var countableBalanceCell = new Cell()
+                    .add(new Paragraph(String.valueOf(generalLedgerEntry.getValue())).setTextAlignment(TextAlignment.CENTER))
+                    .setFont(font)
+                    .setFontColor(ColorConstants.BLACK)
+                    .setFontSize(12f);
 
             generalLedgerTable.addCell(dateCell);
             generalLedgerTable.addCell(detailCell);
             generalLedgerTable.addCell(debitCell);
             generalLedgerTable.addCell(creditCell);
+            generalLedgerTable.addCell(countableBalanceCell);
 
         }
 
