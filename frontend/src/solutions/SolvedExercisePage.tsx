@@ -4,6 +4,9 @@ import React, {useState} from "react";
 import {ProgressSpinner} from "primereact/progressspinner";
 import * as ExerciseService from "../exercises/services/exercise.service";
 import {TabMenu} from "primereact/tabmenu";
+import GeneralJournalTable from "../general-journal/GeneralJournalTable";
+import GeneralLedgerTableList from "../general-ledger/GeneralLedgerTableList";
+import ShareSolvedExercise from "../share/ShareSolvedExercise";
 
 function SolvedExercisePage() {
   const {solvedExerciseId} = useParams();
@@ -17,7 +20,8 @@ function SolvedExercisePage() {
   const items = [
     {label: 'Diario General', icon: 'pi pi-fw pi-home'},
     {label: 'Mayor General', icon: 'pi pi-fw pi-calendar'},
-    {label: 'Balanza de comprobación', icon: 'pi pi-fw pi-pencil'}
+    {label: 'Balanza de comprobación', icon: 'pi pi-fw pi-pencil'},
+    {label: 'Compartir Ejercicio', icon: 'pi pi-share-alt'}
   ];
 
   if (isLoading) {
@@ -43,13 +47,15 @@ function SolvedExercisePage() {
         <TabMenu model={items} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}/>
 
         {activeIndex === 0 ?
-            <p>Aqui se presenta el diario General</p> : null}
+            <GeneralJournalTable data={data?.generalJournal} /> : null}
 
         {activeIndex === 1 ?
-            <p>Aqui se presenta el mayor general</p> : null}
+            <GeneralLedgerTableList generalLedger={data?.generalLedger} /> : null}
 
         {activeIndex === 2 ?
             <p>Aqui se presenta la balanza de comprobacion</p> : null}
+
+        {activeIndex === 3 ? <ShareSolvedExercise solvedExercise={data} /> : null}
       </div>
   );
 }

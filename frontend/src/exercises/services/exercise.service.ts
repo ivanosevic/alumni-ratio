@@ -12,8 +12,8 @@ async function getSolvedExercise(id: string | undefined): Promise<SolvedExercise
   return solvedExercise.data;
 }
 
-async function getSolvedExercisePdf(id: string): Promise<AxiosResponse> {
-  return await axios.get(`http://localhost:7000/solved-exercise/${id}`, {responseType: 'blob'});
+async function getSolvedExercisePdf(id: string | undefined): Promise<AxiosResponse> {
+  return await axios.get(`http://localhost:7000/solved-exercise/${id}/pdf`, {responseType: 'blob'});
 }
 
 export {solveExercise, getSolvedExercisePdf, getSolvedExercise};
