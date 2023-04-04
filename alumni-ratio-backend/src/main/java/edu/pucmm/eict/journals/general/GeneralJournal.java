@@ -5,18 +5,14 @@ import edu.pucmm.eict.exercises.Exercise;
 import edu.pucmm.eict.journals.general.analyzer.*;
 import edu.pucmm.eict.transactions.Transaction;
 import edu.pucmm.eict.transactions.TransactionType;
-import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.codecs.pojo.annotations.BsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class GeneralJournal {
 
     @JsonIgnore
-    @BsonIgnore
     private Exercise exercise;
     private List<GeneralJournalEntry> generalJournalEntries;
 
@@ -31,51 +27,51 @@ public class GeneralJournal {
 
     public void addTransactionAsEntry(Transaction transaction) {
         var analyzerContext = new GeneralJournalAnalyzerContext();
-        if (transaction.getTransactionType().equals(TransactionType.OWNER_INVESTMENT)) {
+        if (transaction.getType().equals(TransactionType.OWNER_INVESTMENT)) {
             analyzerContext.setAnalyzer(new OwnerInvestmentEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.OFFICE_SUPPLIES_PURCHASE)) {
+        if (transaction.getType().equals(TransactionType.OFFICE_SUPPLIES_PURCHASE)) {
             analyzerContext.setAnalyzer(new OfficeSuppliesPurchaseEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.OFFICE_EQUIPMENT_PURCHASE)) {
+        if (transaction.getType().equals(TransactionType.OFFICE_EQUIPMENT_PURCHASE)) {
             analyzerContext.setAnalyzer(new OfficeEquipmentPurchaseEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.LAND_PURCHASE)) {
+        if (transaction.getType().equals(TransactionType.LAND_PURCHASE)) {
             analyzerContext.setAnalyzer(new LandPurchaseEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.OFFICE_SUPPLIES_PAYMENT)) {
+        if (transaction.getType().equals(TransactionType.OFFICE_SUPPLIES_PAYMENT)) {
             analyzerContext.setAnalyzer(new OfficeSuppliesPaymentEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.OFFICE_EQUIPMENT_PAYMENT)) {
+        if (transaction.getType().equals(TransactionType.OFFICE_EQUIPMENT_PAYMENT)) {
             analyzerContext.setAnalyzer(new OfficeEquipmentPaymentEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.BANK_LOAN)) {
+        if (transaction.getType().equals(TransactionType.BANK_LOAN)) {
             analyzerContext.setAnalyzer(new BankLoanEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.BANK_LOAN_PAYMENT)) {
+        if (transaction.getType().equals(TransactionType.BANK_LOAN_PAYMENT)) {
             analyzerContext.setAnalyzer(new BankLoanPaymentEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.SERVICE_REVENUES)) {
+        if (transaction.getType().equals(TransactionType.SERVICE_REVENUES)) {
             analyzerContext.setAnalyzer(new ServiceRevenuesEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.PUBLIC_SERVICES_EXPENSES)) {
+        if (transaction.getType().equals(TransactionType.PUBLIC_SERVICES_EXPENSES)) {
             analyzerContext.setAnalyzer(new PublicServicesExpensesEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.RENT_EXPENSES)) {
+        if (transaction.getType().equals(TransactionType.RENT_EXPENSES)) {
             analyzerContext.setAnalyzer(new RentExpensesEntryAnalyzer());
         }
 
-        if (transaction.getTransactionType().equals(TransactionType.WAGES_EXPENSES)) {
+        if (transaction.getType().equals(TransactionType.WAGES_EXPENSES)) {
             analyzerContext.setAnalyzer(new WagesExpensesEntryAnalyzer());
         }
         var entry = analyzerContext.analyze(transaction, exercise);
@@ -92,6 +88,14 @@ public class GeneralJournal {
 
     public Exercise getExercise() {
         return exercise;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setGeneralJournalEntries(List<GeneralJournalEntry> generalJournalEntries) {
+        this.generalJournalEntries = generalJournalEntries;
     }
 
     @Override

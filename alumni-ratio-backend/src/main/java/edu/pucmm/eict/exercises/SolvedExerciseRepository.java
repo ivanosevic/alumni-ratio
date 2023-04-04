@@ -20,7 +20,8 @@ public class SolvedExerciseRepository {
     public void saveSolvedExercise(SolvedExercise solvedExercise) {
         var database = mongoClient.getDatabase("BaseDeDatosContable").withCodecRegistry(codecRegistry);
         var collection = database.getCollection("solvedExercise", SolvedExercise.class);
-        collection.insertOne(solvedExercise);
+        var result = collection.insertOne(solvedExercise);
+        solvedExercise.setId(result.getInsertedId().asObjectId().getValue().toString());
     }
 
     public Optional<SolvedExercise> findById(String solvedExerciseId) {

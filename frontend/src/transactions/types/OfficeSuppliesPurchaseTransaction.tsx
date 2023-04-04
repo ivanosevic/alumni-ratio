@@ -1,26 +1,25 @@
 import {Transaction, TransactionType} from "../models/transaction.model";
 import React, {useEffect} from "react";
 import PaymentTransaction from "../common/PaymentTransaction";
+import {InputNumberValueChangeEvent} from "primereact/inputnumber";
+import {DropdownChangeEvent} from "primereact/dropdown";
+import {PaymentTypeSelection} from "../common/PaymentTypeDropdown";
 
 interface OfficeSuppliesPurchaseTransactionProps {
-    transaction: Transaction;
-    setTransaction: React.Dispatch<React.SetStateAction<Transaction>>;
+  transaction: Transaction;
+  onCreditChange: (e: InputNumberValueChangeEvent) => void;
+  onDebitChange: (e: InputNumberValueChangeEvent) => void;
+  onAmountChange: (e: InputNumberValueChangeEvent) => void;
+  onPaymentTypeChange: (e: PaymentTypeSelection) => void;
 }
 
 
 export default function OfficeSuppliesPurchaseTransaction(props: OfficeSuppliesPurchaseTransactionProps) {
-    useEffect(() => {
-        props.setTransaction(prevState => {
-            return {
-                ...prevState,
-                type: TransactionType.OFFICE_SUPPLIES_PURCHASE
-            }
-        });
-    }, []);
-
-    return (
-        <>
-            <PaymentTransaction transaction={props.transaction} setTransaction={props.setTransaction} />
-        </>
-    );
+  return (
+      <>
+        <PaymentTransaction transaction={props.transaction} onPaymentTypeChange={props.onPaymentTypeChange}
+                            onAmountChange={props.onAmountChange} onCreditChange={props.onCreditChange}
+                            onDebitChange={props.onDebitChange}/>
+      </>
+  );
 }

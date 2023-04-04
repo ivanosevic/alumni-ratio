@@ -42,7 +42,8 @@ public class LandPurchaseEntryAnalyzer implements PaymentTypeEntryAnalyzer {
         var landAccountName = "Terrenos";
         var cashAccountName = "Efectivo";
         var notesPayableAccountName = "Documentos por pagar";
-        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.LANDS, landAccountName, transaction.getAmount(), BigDecimal.ZERO));
+        var amount = transaction.getCredit().add(transaction.getDebit());
+        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.LANDS, landAccountName, amount, BigDecimal.ZERO));
         entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.NOTES_PAYABLES, notesPayableAccountName, BigDecimal.ZERO, transaction.getCredit()));
         entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.CASH, cashAccountName, BigDecimal.ZERO, transaction.getDebit()));
         return entry;

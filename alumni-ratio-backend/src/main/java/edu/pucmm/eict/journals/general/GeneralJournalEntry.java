@@ -11,7 +11,8 @@ public class GeneralJournalEntry {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     private LocalDate date;
     private String explanation;
-    private final List<GeneralJournalRow> generalJournalRows;
+    private List<GeneralJournalRow> generalJournalRows;
+
     public GeneralJournalEntry() {
         this.generalJournalRows = new ArrayList<>();
     }
@@ -44,6 +45,10 @@ public class GeneralJournalEntry {
 
     public List<GeneralJournalRow> getGeneralJournalRows() {
         return generalJournalRows;
+    }
+
+    public void setGeneralJournalRows(List<GeneralJournalRow> generalJournalRows) {
+        this.generalJournalRows = generalJournalRows;
     }
 
     @Override

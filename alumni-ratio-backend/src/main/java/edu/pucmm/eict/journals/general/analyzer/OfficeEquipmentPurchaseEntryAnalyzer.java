@@ -43,7 +43,8 @@ public class OfficeEquipmentPurchaseEntryAnalyzer implements PaymentTypeEntryAna
         var cashAccountName = "Efectivo";
         var officeSuppliesAccountName = "Equipos de oficina";
         var accountPayablesName = "Cuentas por pagar";
-        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.OFFICE_EQUIPMENT, officeSuppliesAccountName , transaction.getAmount(), BigDecimal.ZERO));
+        var amount = transaction.getCredit().add(transaction.getDebit());
+        entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.OFFICE_EQUIPMENT, officeSuppliesAccountName , amount, BigDecimal.ZERO));
         entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.ACCOUNTS_PAYABLES, accountPayablesName, BigDecimal.ZERO, transaction.getCredit()));
         entry.addRow(new GeneralJournalRow(transactionDate, AccountBook.CASH, cashAccountName, BigDecimal.ZERO, transaction.getDebit()));
         return entry;
